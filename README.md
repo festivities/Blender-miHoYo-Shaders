@@ -41,6 +41,12 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 
 ## Support
 - [Discord server](https://discord.gg/Sp9vDCvWRW)
+- [Twitter](https://twitter.com/Festivizing)
+
+## Rules
+- If you use this shader in your project, I'd appreciate being credited - **you don't have to do it though.**
+- If you use this shader as your main reference, please give credit where its due.
+- Please don't redistribute the files, I'd appreciate it more if you linked this GitHub repo instead ^^
 
 ## Special thanks
-This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. Enjoy! I hope you learn a thing or two.
+This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. I hope you learn a thing or two. Enjoy!
