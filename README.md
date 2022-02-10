@@ -1,9 +1,9 @@
-# miHoYo Shader for Blender 3.0 and above
+# miHoYo Shaders for Blender 3.0 and above
 
 ## Preview
 
 ## Milestones
-This shader isn't meant to be 100% accurate - in fact it will most likely never be until someone blesses us with the decompiled shader code. Until then, what I only aim for is to replicate the in-game look to the best of my ability.
+These shaders aren't meant to be 100% accurate - in fact they will most likely never be until someone blesses us with the decompiled shader code. Until then, what I only aim for is to replicate the in-game looks to the best of my ability.
 
 ### Genshin Impact
 - [x] Ramp texture implementation **(done thanks to [Manashiku](https://github.com/Manashiku/MMDGenshin/))**
