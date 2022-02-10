@@ -2,8 +2,10 @@
 
 ## Preview
 ![Preview](https://pbs.twimg.com/media/FFG9XFZVIAEGbax?format=jpg)
-![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview1.gif)
-![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview2.gif)
+
+https://user-images.githubusercontent.com/77230051/153380331-7b219a26-f627-4f09-ba1f-8bb4491474cb.mp4
+
+
 
 ## Usage
 1. Download a release [here](https://github.com/Festivize/Blender-miHoYo-Shaders/releases).
