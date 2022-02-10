@@ -1,6 +1,9 @@
 # miHoYo Shaders for Blender 3.0 and above
 
 ## Preview
+![Preview](https://pbs.twimg.com/media/FFG9XFZVIAEGbax?format=jpg)
+![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview1.gif)
+![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview2.gif)
 
 ## Milestones
 These shaders aren't meant to be 100% accurate - in fact they will most likely never be until someone blesses us with the decompiled shader code. Until then, what I only aim for is to replicate the in-game looks to the best of my ability.
@@ -29,5 +32,8 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 ### Honkai Impact 3rd
 - [ ] Learn how to datamine assets from the game LOL someone please make a tool
 
+## Support
+- [Discord server](https://discord.gg/Sp9vDCvWRW)
+
 ## Special thanks
-This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. Enjoy, and I hope you learn a thing or two.
+This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. Enjoy! I hope you learn a thing or two.
