@@ -44,8 +44,8 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [Twitter](https://twitter.com/Festivizing)
 
 ## Rules
-- If you use this shader in your project, I'd appreciate being credited - **you don't have to do it though.**
-- If you use this shader as your main reference, please give credit where its due.
+- If you use this shader in your project (renders, animations), I'd appreciate being credited - **you don't have to do it though.**
+- If you use this shader as your main reference for your own shader, please give credit where its due.
 - Please don't redistribute the files, I'd appreciate it more if you linked this GitHub repo instead ^^
 
 ## Special thanks
