@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/77230051/153380331-7b219a26-f627-4f09-
 2. In a new project with your desired character mesh, append whatever materials the .blend file you downloaded will contain.
 3. Add in the textures - this includes the metallic matcap texture, diffuse textures, lightmaps, etc. **I won't be redistributing them. You can datamine them yourself or ask somewhere else.**
 4. Constrain the empty object named *Head Driver* to the head bone of your character with a **Child Of** constraint.
-5. In the *Global Material Properties* panel, you may wonder what the Body Y and Hair Y values are supposed to be - those correspond to the ramp textures. Refor to this little infographic I [made](https://i.imgur.com/r7BqTBV.png).
+5. In the *Global Material Properties* panel, you may wonder what the Body Y and Hair Y values are supposed to be - those correspond to the ramp textures. Refer to this little infographic I [made](https://i.imgur.com/r7BqTBV.png).
 6. I'll be making a video guide soon. If anyone wants to help out, that'd be appreciated.
 
 ## Milestones
