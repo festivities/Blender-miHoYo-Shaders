@@ -5,6 +5,13 @@
 ![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview1.gif)
 ![Preview, horrible quality I know](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/genshin-preview/genshin-preview2.gif)
 
+## Usage
+1. Download a release [here](https://github.com/Festivize/Blender-miHoYo-Shaders/releases).
+2. In a new project with your desired character mesh, append whatever materials the .blend file you downloaded will contain.
+3. Add in the textures - this includes the metallic matcap texture, diffuse textures, lightmaps, etc. **I won't be redistributing them. You can datamine them yourself or ask somewhere else.**
+4. Constrain the empty object named *Head Driver* to the head bone of your character with a **Child Of** constraint.
+5. I'll be making a video guide soon. If anyone wants to help out, that'd be appreciated.
+
 ## Milestones
 These shaders aren't meant to be 100% accurate - in fact they will most likely never be until someone blesses us with the decompiled shader code. Until then, what I only aim for is to replicate the in-game looks to the best of my ability.
 
