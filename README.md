@@ -27,7 +27,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Stable release
 - [ ] Constant width rim lighting *(until Blender implements real-time compositing/screen shaders, I don't see this feature happening anytime soon, for now have a simple NdotV rim light)*
 - [ ] Constant width outlines *(it's actually possible with Geometry Nodes, but it's far too non-intuitive for the average user to set up, waiting for Blender to implement actual vertex shaders)*
-- [ ] Outline material *(will do this soon)*
+- [x] Outline material
 
 ### Honkai: Star Rail
 - [x] Ramp texture implementation **(done thanks to [Manashiku](https://github.com/Manashiku/MMDGenshin/))**
@@ -37,7 +37,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [ ] Stable release
 - [ ] Constant width rim lighting *(see above)*
 - [ ] Constant width outlines *(see above)*
-- [ ] Outline material *(see above)*
+- [x] Outline material
 
 ### Honkai Impact 3rd
 - [ ] Learn how to datamine assets from the game LOL someone please make a tool
