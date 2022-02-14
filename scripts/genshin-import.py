@@ -1,6 +1,6 @@
 import bpy
 
-# Contributed by @Zekium#9678 from Discord - huge thanks to him!!!
+# Contributed by Zekium from Discord - huge thanks to him!!!
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
 from bpy_extras.io_utils import ImportHelper
