@@ -35,13 +35,18 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
         
         for name, folder, files in os.walk(directory):
             for file in files :
-                #load the file with the correct alpha mode
+                # load the file with the correct alpha mode
                 img_path = directory + "/" + file
                 img = bpy.data.images.load(filepath = img_path, check_existing=True)
                 img.alpha_mode = 'CHANNEL_PACKED'
                 
-                #Implement the texture in the correct node
+                # declare body and face mesh variables
+                body_var = bpy.context.scene.objects["Body"]
+                face_var = bpy.context.scene.objects["Face"]
+                
+                # Implement the texture in the correct node
                 if "Hair_Diffuse" in file :
+                    bpy.context.view_layer.objects.active = body_var
                     bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Diffuse_UV0'].image = img
                     bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Diffuse_UV1'].image = img
                 elif "Hair_Lightmap" in file :
@@ -62,7 +67,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 elif "MetalMap" in file :
                     bpy.data.node_groups['Metallic Matcap'].nodes['MetalMap'].image = img
                 elif "Face_Diffuse" in file :
-                    bpy.context.object.material_slots[2].material.node_tree.nodes['Face_Diffuse'].image = img
+                    bpy.context.view_layer.objects.active = face_var
+                    bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Diffuse'].image = img
                 elif "FaceLightmap" in file :
                     img.colorspace_settings.name='Non-Color'
                     bpy.data.node_groups['Face Lightmap'].nodes['Face_Lightmap'].image = img
