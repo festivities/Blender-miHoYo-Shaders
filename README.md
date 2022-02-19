@@ -51,7 +51,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - The [GPL-3.0 License](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/LICENSE) applies.
 - If you use this shader as is in renders, animations or any form of medium that does not directly modify the shader, I'd appreciate being credited - **you don't have to do it though.**
 - If you use this shader as the main reference for your own shader, please give credit where it's due.
-- Please don't redistribute the files, I'd appreciate it more if you linked this GitHub repo instead ^^
+- In compliance with the license, you are free to redistribute the files as long as you attach a link to the source repository.
 
 ## Special thanks
 This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. A huge thanks to Zekium from Discord as well for contributing the script to automate the importing of textures. With that said, I hope you learn a thing or two. Enjoy!
