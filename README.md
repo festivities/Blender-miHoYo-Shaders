@@ -23,7 +23,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Ramp texture implementation **(done thanks to [Manashiku](https://github.com/Manashiku/MMDGenshin/))**
 - [x] Face shading
 - [x] Metallic matcap function
-- [x] Specular function **(done with some inspiration from Aerthas' [ArcSys shader](https://github.com/Aerthas/BLENDER-Arc-System-Works-Shader))**
+- [x] Specular function
 - [x] Custom light/shadow settings for creative freedom
 - [x] Stable release
 - [ ] Constant width rim lighting *(until Blender implements real-time compositing/screen shaders, I don't see this feature happening anytime soon, for now have a simple NdotV rim light)*
@@ -33,7 +33,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 ### Honkai: Star Rail
 - [x] Ramp texture implementation **(done thanks to [Manashiku](https://github.com/Manashiku/MMDGenshin/))**
 - [x] Face shading
-- [x] Specular function **(done with some inspiration from Aerthas' [ArcSys shader](https://github.com/Aerthas/BLENDER-Arc-System-Works-Shader))**
+- [x] Specular function
 - [x] Custom light/shadow settings for creative freedom
 - [ ] Stable release
 - [ ] Constant width rim lighting *(see above)*
@@ -49,8 +49,8 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 
 ## Rules
 - The [GPL-3.0 License](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/LICENSE) applies.
-- If you use this shader in your project (renders, animations), I'd appreciate being credited - **you don't have to do it though.**
-- If you use this shader as your main reference for your own shader, please give credit where its due.
+- If you use this shader as is in renders, animations or any form of medium that does not directly modify the shader, I'd appreciate being credited - **you don't have to do it though.**
+- If you use this shader as the main reference for your own shader, please give credit where it's due.
 - Please don't redistribute the files, I'd appreciate it more if you linked this GitHub repo instead ^^
 
 ## Special thanks
