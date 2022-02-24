@@ -1,9 +1,9 @@
 # miHoYo Shaders for Blender 3.0 and above
 
 ## Preview
-![Preview](https://pbs.twimg.com/media/FFG9XFZVIAEGbax?format=jpg)
-
 ![Preview](https://pbs.twimg.com/media/FMHJjhOUYAAvPnR?format=jpg)
+
+![Preview](https://pbs.twimg.com/media/FFG9XFZVIAEGbax?format=jpg)
 
 https://user-images.githubusercontent.com/77230051/153713701-e6e796d6-b65a-42b1-a04d-e3a03f99f54b.mp4
 
@@ -57,3 +57,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 
 ## Special thanks
 This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. A huge thanks to Zekium from Discord as well for contributing the script to automate the importing of textures. With that said, I hope you learn a thing or two. Enjoy!
+
+## Disclaimer
+
+While the shaders are developed primarily for datamined assets, this repository does not endorse datamining whatsoever and will never directly provide the assets nor tools in extracting from game files.
