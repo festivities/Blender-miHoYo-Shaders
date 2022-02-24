@@ -60,4 +60,4 @@ This wouldn't be possible if it weren't for ArcSys, [Aerthas Veras](https://gith
 
 ## Disclaimer
 
-While the shaders are developed primarily for datamined assets, this repository does not endorse datamining whatsoever and will never directly provide the assets nor tools in extracting from game files.
+While the shaders are developed primarily for datamined assets, this repository does not endorse datamining in any way whatsoever and will never directly provide the assets nor tools in extracting from game files.
