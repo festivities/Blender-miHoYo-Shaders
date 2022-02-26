@@ -65,6 +65,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 elif "Hair_Shadow_Ramp" in file :
                     bpy.data.node_groups['Hair Shadow Ramp'].nodes['Hair_Shadow_Ramp'].image = img
                 elif "MetalMap" in file :
+					img.colorspace_settings.name='Non-Color'
                     bpy.data.node_groups['Metallic Matcap'].nodes['MetalMap'].image = img
                 elif "Face_Diffuse" in file :
                     bpy.context.view_layer.objects.active = face_var
