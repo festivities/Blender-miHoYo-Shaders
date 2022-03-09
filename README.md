@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/77230051/153713701-e6e796d6-b65a-42b1-
 https://user-images.githubusercontent.com/77230051/153380331-7b219a26-f627-4f09-ba1f-8bb4491474cb.mp4
 
 ## Usage
-1. Either download a release [here](https://github.com/Festivize/Blender-miHoYo-Shaders/releases), or download from the source for the latest commit.
+1. Either download a release [here](https://github.com/Festivize/Blender-miHoYo-Shaders/releases), or download from the [source](https://github.com/Festivize/Blender-miHoYo-Shaders/archive/refs/heads/main.zip) for the latest commit.
 2. In a new project with your desired character mesh, append whatever materials the .blend file you downloaded will contain.
 3. Replace the original materials of the mesh with the materials from the .blend file you just appended.
 4. Use this [script](https://github.com/Festivize/Blender-miHoYo-Shaders/tree/main/scripts/genshin-import.py) to import your textures.
