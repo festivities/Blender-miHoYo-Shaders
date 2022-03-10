@@ -13,7 +13,7 @@ https://user-images.githubusercontent.com/77230051/153380331-7b219a26-f627-4f09-
 1. Either download a release [here](https://github.com/Festivize/Blender-miHoYo-Shaders/releases), or download from the [source](https://github.com/Festivize/Blender-miHoYo-Shaders/archive/refs/heads/main.zip) for the latest commit.
 2. In a new project with your desired character mesh, append whatever materials the .blend file you downloaded will contain.
 3. Replace the original materials of the mesh with the materials from the .blend file you just appended.
-4. Use this [script](https://github.com/Festivize/Blender-miHoYo-Shaders/tree/main/scripts/genshin-import.py) to import your textures.
+4. Use this [script](https://github.com/Festivize/Blender-miHoYo-Shaders/blob/main/scripts/genshin-import-linear.py) to import your textures.
 5. Constrain the empty object named *Head Driver* to the head bone of your character with a **Child Of** constraint.
 6. In the *Global Material Properties* panel, you may wonder what the Body Y and Hair Y values are supposed to be - those correspond to the ramp textures. Refer to this little infographic I [made](https://i.imgur.com/r7BqTBV.png).
 7. I'll be making a video guide soon. If anyone wants to help out, that'd be appreciated.
