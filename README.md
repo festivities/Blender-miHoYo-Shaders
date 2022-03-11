@@ -1,4 +1,4 @@
-# miHoYo Shaders for Blender 3.0 and above
+# miHoYo Shaders for Blender 3.1 and above
 
 ## Preview
 ![Preview](https://pbs.twimg.com/media/FMHJjhOUYAAvPnR?format=jpg)
