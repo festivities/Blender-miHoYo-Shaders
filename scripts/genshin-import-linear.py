@@ -70,6 +70,10 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 				elif "Face_Diffuse" in file :
 					bpy.context.view_layer.objects.active = face_var
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Diffuse'].image = img
+				elif "Face_Shadow" in file :
+					bpy.context.view_layer.objects.active = face_var
+					img.colorspace_settings.name='Non-Color'
+					bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Shadow'].image = img
 				elif "FaceLightmap" in file :
 					img.colorspace_settings.name='Non-Color'
 					bpy.data.node_groups['Face Lightmap'].nodes['Face_Lightmap'].image = img
