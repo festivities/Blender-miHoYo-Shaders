@@ -29,7 +29,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Custom light/shadow settings for creative freedom
 - [x] Stable release
 - [ ] Constant width rim lighting *(until Blender implements real-time compositing/screen shaders, I don't see this feature happening anytime soon, for now have a simple NdotV rim light)*
-- [ ] Constant width outlines *(it's actually possible with Geometry Nodes, but it's far too non-intuitive for the average user to set up, waiting for Blender to implement actual vertex shaders)*
+- [ ] Constant width outlines *(currently experimental for Geometry Nodes, will be ticking this once Blender implements vec4 operations)*
 - [x] Outline material
 
 ### Honkai: Star Rail
@@ -56,7 +56,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - In compliance with the license, you are free to redistribute the files as long as you attach a link to the source repository.
 
 ## Special thanks
-This wouldn't be possible if it weren't for Arc System Works, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. A huge thanks to Zekium from Discord as well for contributing the script to automate the importing of textures. With that said, I hope you learn a thing or two. Enjoy!
+This wouldn't be possible if it weren't for Arc System Works, [Aerthas Veras](https://github.com/Aerthas/), [Manashiku](https://github.com/Manashiku/), the folks over at 知乎专栏 and many more I simply can't cite who choose to share their knowledge and open-source their own shaders. For that, I'd like to give back to the community with what I've learned. A huge thanks to Zekium and RumblingRose as well for contributing scripts which automate some tedious tasks. With that said, I hope you learn a thing or two. Enjoy!
 
 ## Disclaimer
 While the shaders are developed primarily for datamined assets, this repository does not endorse datamining in any way whatsoever and will never directly provide the assets nor tools in extracting from game files.
