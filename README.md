@@ -46,7 +46,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [ ] Learn how to datamine assets from the game LOL someone please make a tool
 
 ## Support
-- [Discord server](https://discord.gg/Sp9vDCvWRW)
+- [Discord server (DEAD LINK, NEW ONE TBA](https://discord.gg/Sp9vDCvWRW)
 - [Twitter](https://twitter.com/Festivizing)
 
 ## Rules
