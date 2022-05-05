@@ -29,7 +29,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Custom light/shadow settings for creative freedom
 - [x] Stable release
 - [ ] Constant width rim lighting *(until Blender implements real-time compositing/screen shaders, I don't see this feature happening anytime soon, for now have a simple NdotV rim light)*
-- [ ] Constant width outlines *(currently experimental for Geometry Nodes, will be ticking this once Blender implements vec4 operations)*
+- [x] Constant width outlines *(currently experimental for Geometry Nodes)*
 - [x] Outline material
 
 ### Honkai: Star Rail
@@ -39,7 +39,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Custom light/shadow settings for creative freedom
 - [ ] Stable release
 - [ ] Constant width rim lighting *(see above)*
-- [ ] Constant width outlines *(see above)*
+- [x] Constant width outlines *(see above)*
 - [x] Outline material
 
 ### Honkai Impact 3rd
