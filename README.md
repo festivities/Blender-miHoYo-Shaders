@@ -28,7 +28,7 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 - [x] Specular function
 - [x] Custom light/shadow settings for creative freedom
 - [x] Stable release
-- [ ] Constant width rim lighting *(until Blender implements real-time compositing/screen shaders, I don't see this feature happening anytime soon, for now have a simple NdotV rim light)*
+- [ ] Constant width rim lighting *(I've made a setup based on Ben Ayers' [nodes](https://www.artstation.com/blogs/bjayers/9oOD/blender-npr-recreating-the-genshin-impact-shader) with some improvements,  however as this is nowhere near to how the game even does it, I'll be leaving this unticked for now)*
 - [x] Constant width outlines *(currently experimental for Geometry Nodes)*
 - [x] Outline material
 
