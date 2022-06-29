@@ -44,35 +44,41 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 				# declare body and face mesh variables
 				body_var = bpy.context.scene.objects["Body"]
 				face_var = bpy.context.scene.objects["Face"]
-				
+
 				# Implement the texture in the correct node
 				if "Hair_Diffuse" in file :
-					img.colorspace_settings.name='Utility - sRGB - Texture'
 					bpy.context.view_layer.objects.active = body_var
+					img.colorspace_settings.name='Utility - sRGB - Texture'
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Diffuse_UV0'].image = img
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Diffuse_UV1'].image = img
 				elif "Hair_Lightmap" in file :
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - Raw'
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Lightmap_UV0'].image = img
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Lightmap_UV1'].image = img
+				elif "Hair_Normalmap" in file :
+					bpy.context.view_layer.objects.active = body_var
+					img.colorspace_settings.name='Utility - Raw'
+					bpy.context.object.material_slots[0].material.node_tree.nodes['Hair_Normalmap_UV0'].image = img
+				elif "Hair_Shadow_Ramp" in file :
+					img.colorspace_settings.name='Utility - sRGB - Texture'
+					bpy.data.node_groups['Hair Shadow Ramp'].nodes['Hair_Shadow_Ramp'].image = img
 				elif "Body_Diffuse" in file :
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - sRGB - Texture'
 					bpy.context.object.material_slots[1].material.node_tree.nodes['Body_Diffuse_UV0'].image = img
 					bpy.context.object.material_slots[1].material.node_tree.nodes['Body_Diffuse_UV1'].image = img
 				elif "Body_Lightmap" in file :
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - Raw'
 					bpy.context.object.material_slots[1].material.node_tree.nodes['Body_Lightmap_UV0'].image = img
 					bpy.context.object.material_slots[1].material.node_tree.nodes['Body_Lightmap_UV1'].image = img
+				elif "Body_Normalmap" in file :
+					bpy.context.view_layer.objects.active = body_var
+					img.colorspace_settings.name='Utility - Raw'
+					bpy.context.object.material_slots[1].material.node_tree.nodes['Body_Normalmap_UV0'].image = img
 				elif "Body_Shadow_Ramp" in file :
-					img.colorspace_settings.name='Utility - sRGB - Texture'
 					bpy.data.node_groups['Body Shadow Ramp'].nodes['Body_Shadow_Ramp'].image = img
-				elif "Hair_Shadow_Ramp" in file :
-					img.colorspace_settings.name='Utility - sRGB - Texture'
-					bpy.data.node_groups['Hair Shadow Ramp'].nodes['Hair_Shadow_Ramp'].image = img
-				elif "MetalMap" in file :
-					img.colorspace_settings.name='Utility - sRGB - Texture'
-					# img.colorspace_settings.name='Utility - Raw'
-					bpy.data.node_groups['Metallic Matcap'].nodes['MetalMap'].image = img
 				elif "Face_Diffuse" in file :
 					bpy.context.view_layer.objects.active = face_var
 					img.colorspace_settings.name='Utility - sRGB - Texture'
@@ -82,8 +88,14 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 					img.colorspace_settings.name='Utility - Raw'
 					bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Shadow'].image = img
 				elif "FaceLightmap" in file :
+					bpy.context.view_layer.objects.active = face_var
 					img.colorspace_settings.name='Utility - Raw'
 					bpy.data.node_groups['Face Lightmap'].nodes['Face_Lightmap'].image = img
+				elif "MetalMap" in file :
+					img.colorspace_settings.name='Utility - sRGB - Texture'
+					bpy.data.node_groups['Metallic Matcap'].nodes['MetalMap'].image = img
+				else :
+					pass
 			
 		return {'FINISHED'}
 

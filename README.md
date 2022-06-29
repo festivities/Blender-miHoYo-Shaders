@@ -45,8 +45,8 @@ These shaders aren't meant to be 100% accurate - in fact they will most likely n
 ### Honkai Impact 3rd
 - [ ] Learn how to datamine assets from the game LOL someone please make a tool
 
-## Support
-- [Discord server](https://discord.gg/Wgm6mP6nhH)
+## Contact
+- [Discord server](https://discord.gg/85rP9SpAkF)
 - [Twitter](https://twitter.com/Festivizing)
 
 ## Rules
