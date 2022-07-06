@@ -43,7 +43,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 				
 				# declare body and face mesh variables
 				body_var = bpy.context.scene.objects["Body"]
-				face_var = bpy.context.scene.objects["Face"]
+				# face_var = bpy.context.scene.objects["Face"]
 
 				# Implement the texture in the correct node
 				if "Hair_Diffuse" in file :
@@ -80,15 +80,15 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 				elif "Body_Shadow_Ramp" in file :
 					bpy.data.node_groups['Body Shadow Ramp'].nodes['Body_Shadow_Ramp'].image = img
 				elif "Face_Diffuse" in file :
-					bpy.context.view_layer.objects.active = face_var
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - sRGB - Texture'
-					bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Diffuse'].image = img
+					bpy.context.object.material_slots[2].material.node_tree.nodes['Face_Diffuse'].image = img
 				elif "Face_Shadow" in file :
-					bpy.context.view_layer.objects.active = face_var
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - Raw'
-					bpy.context.object.material_slots[0].material.node_tree.nodes['Face_Shadow'].image = img
+					bpy.context.object.material_slots[2].material.node_tree.nodes['Face_Shadow'].image = img
 				elif "FaceLightmap" in file :
-					bpy.context.view_layer.objects.active = face_var
+					bpy.context.view_layer.objects.active = body_var
 					img.colorspace_settings.name='Utility - Raw'
 					bpy.data.node_groups['Face Lightmap'].nodes['Face_Lightmap'].image = img
 				elif "MetalMap" in file :
