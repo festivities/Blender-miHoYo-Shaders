@@ -62,6 +62,7 @@ All of this wouldn't be possible if it weren't for:
 - [Aerthas Veras](https://github.com/Aerthas/) 
 - [Manashiku](https://github.com/Manashiku/)
 - The folks over at [知乎专栏](https://zhuanlan.zhihu.com/)
+- JTAOO
 - Zekium and RumblingRose for some of the handy scripts
 - [No_Tables](https://twitter.com/No_Tables) for making an intuitive video on using the shader
 
