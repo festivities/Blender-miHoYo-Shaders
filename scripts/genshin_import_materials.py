@@ -14,13 +14,13 @@ import sys
 if './scripts' not in sys.path:
     sys.path.append('./scripts')
 
-from genshin_import_character_model import GI_OT_GenshinImportMaterialsTest
+from genshin_import_character_model import GI_OT_GenshinImportModel
 
 
 class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
-    """This appears in the tooltip of the operator and in the generated docs"""
+    """Select Festivity's Shaders folder to import materials"""
     bl_idname = "file.genshin_import_materials"  # important since its how bpy.ops.import_test.some_data is constructed
-    bl_label = "Genshin: Import Materials"
+    bl_label = "Genshin: Import Festivity Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"
@@ -60,7 +60,7 @@ class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
             files=NAMES_OF_GENSHIN_MATERIALS
         )
 
-        bpy.ops.file.genshin_import_materials_test('INVOKE_DEFAULT')
+        bpy.ops.file.genshin_import_model('INVOKE_DEFAULT')
 
         return {'FINISHED'}
 
@@ -71,14 +71,14 @@ def register():
     # Originally I tried checking, but this way is less bug-prone and is more Pythonic
     # Tried checking for attributes (on bpy.ops.file.xxx), but it seemed to always return true
     try:
-        bpy.utils.register_class(GI_OT_GenshinImportMaterialsTest)
+        bpy.utils.register_class(GI_OT_GenshinImportModel)
     except ValueError:
         pass  # expected if class is already registered
 
 
 def unregister():
     bpy.utils.unregister_class(GI_OT_GenshinImportMaterials)
-    bpy.utils.unregister_class(GI_OT_GenshinImportMaterialsTest)
+    bpy.utils.unregister_class(GI_OT_GenshinImportModel)
 
 
 if __name__ == "__main__":
