@@ -36,13 +36,13 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
     def execute(self, context):
         CHARACTER_MODEL_FILE_PATH_DIRECTORY = os.path.dirname(self.filepath)
 
-        self.import_character_model(CHARACTER_MODEL_FILE_PATH_DIRECTORY)
-        self.join_body_parts_to_body()
-        self.replace_default_materials_with_genshin_materials()
+        self.__import_character_model(CHARACTER_MODEL_FILE_PATH_DIRECTORY)
+        self.__join_body_parts_to_body()
+        self.__replace_default_materials_with_genshin_materials()
 
         return {'FINISHED'}
 
-    def import_character_model(self, character_model_file_path_directory):
+    def __import_character_model(self, character_model_file_path_directory):
         character_model_file_path = self.__find_fbx_file(character_model_file_path_directory)
         bpy.ops.import_scene.fbx(filepath=character_model_file_path)
         print('Imported Character Model...')
@@ -53,7 +53,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
                 if '.fbx' in pathlib.Path(file_name).suffix:
                     return os.path.join(root, file_name)
     
-    def join_body_parts_to_body(self):
+    def __join_body_parts_to_body(self):
         character_model = None
         for object in bpy.context.scene.objects:
             if object.type == 'ARMATURE':
@@ -68,7 +68,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         bpy.context.view_layer.objects.active = character_model_body
         bpy.ops.object.join()
     
-    def replace_default_materials_with_genshin_materials(self):
+    def __replace_default_materials_with_genshin_materials(self):
         body_mesh_object = [object for object in bpy.context.scene.objects if object.type == 'MESH'][0]
 
         for material_slot in body_mesh_object.material_slots:
