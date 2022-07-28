@@ -1,5 +1,5 @@
-# Converted from a script initially written by Zekium from Discord
-# Written by Mken
+# Structure for file comes from a script initially written by Zekium from Discord
+# Written by Mken from Discord
 
 import bpy
 import pathlib
