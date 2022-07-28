@@ -7,9 +7,15 @@ import pathlib
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
 from bpy_extras.io_utils import ImportHelper
-from bpy.props import StringProperty, BoolProperty, EnumProperty
+from bpy.props import StringProperty, IntProperty, BoolProperty, EnumProperty
 from bpy.types import Operator
 import os
+
+import sys
+if './scripts/streamlined_setup' not in sys.path:
+    sys.path.append('./scripts/streamlined_setup')
+
+from import_order import invoke_next_step
 
 
 class GI_OT_GenshinImportModel(Operator, ImportHelper):
@@ -33,19 +39,23 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         maxlen=255,  # Max internal buffer length, longer would be clamped.
     )
 
-    def execute(self, context):
-        CHARACTER_MODEL_FILE_PATH_DIRECTORY = os.path.dirname(self.filepath)
+    next_step_idx: IntProperty()
+    file_directory: StringProperty()
 
-        self.__import_character_model(CHARACTER_MODEL_FILE_PATH_DIRECTORY)
+    def execute(self, context):
+        character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
+
+        self.__import_character_model(character_model_folder_file_path)
         self.__join_body_parts_to_body()
         self.__replace_default_materials_with_genshin_materials()
 
+        invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}
 
     def __import_character_model(self, character_model_file_path_directory):
         character_model_file_path = self.__find_fbx_file(character_model_file_path_directory)
         bpy.ops.import_scene.fbx(filepath=character_model_file_path)
-        print('Imported Character Model...')
+        print('Imported character model...')
 
     def __find_fbx_file(self, directory):
         for root, folder, files in os.walk(directory):
