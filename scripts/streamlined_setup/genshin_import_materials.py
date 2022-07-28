@@ -21,7 +21,7 @@ from import_order import invoke_next_step
 class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
     """Select Festivity's Shaders folder to import materials"""
     bl_idname = "file.genshin_import_materials"  # important since its how bpy.ops.import_test.some_data is constructed
-    bl_label = "Genshin: Import Festivity Folder"
+    bl_label = "1_Genshin: Select Festivity Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

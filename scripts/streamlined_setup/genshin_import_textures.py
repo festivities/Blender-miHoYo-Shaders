@@ -19,7 +19,7 @@ from import_order import invoke_next_step
 class GI_OT_GenshinImportTextures(Operator, ImportHelper):
     """Select the folder with the model's textures to import"""
     bl_idname = "file.genshin_import_textures"  # important since its how bpy.ops.import_test.some_data is constructed
-    bl_label = "Genshin: Import Textures"
+    bl_label = "3_Genshin: Select Texture Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

@@ -16,7 +16,7 @@ from genshin_import_textures import GI_OT_GenshinImportTextures
 class GI_OT_GenshinImportWizard(Operator):
     """Import Wizard Process"""
     bl_idname = "file.genshin_import_wizard"  # important since its how bpy.ops.import_test.some_data is constructed
-    bl_label = "Genshin: Import Wizard"
+    bl_label = "Genshin: Import Wizard (Start Here!)"
 
     def execute(self, context):
         invoke_next_step(1)
