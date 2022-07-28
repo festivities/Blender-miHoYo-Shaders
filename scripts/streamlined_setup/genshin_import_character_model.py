@@ -20,7 +20,7 @@ from import_order import invoke_next_step
 
 class GI_OT_GenshinImportModel(Operator, ImportHelper):
     """Select the folder with the desired model to import"""
-    bl_idname = "file.genshin_import_model"  # important since its how bpy.ops.import_test.some_data is constructed
+    bl_idname = "file.genshin_import_model"  # important since its how we chain file dialogs
     bl_label = "2_Genshin: Select Model Folder"
 
     # ImportHelper mixin class uses this
@@ -94,6 +94,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
                 material_to_replace_with = bpy.data.materials.get('miHoYo - Genshin Body')
 
             material_slot.material = material_to_replace_with
+        print('Replaced default materials with Genshin shader materials...')
 
 
 def register():
