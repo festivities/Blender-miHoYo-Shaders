@@ -3,7 +3,7 @@ from pathlib import PurePath
 
 main_py_file_path = os.path.dirname(os.path.dirname(__file__))
 output_directory = f'{main_py_file_path}/output'
-master_compare_directory_file_path = '<DirectoryWithTxtFilesGoesHere'
+master_compare_directory_file_path = '<DirectoryWithTxtFilesGoesHere>'
 
 
 # Quick sanity check test, probably could've been written better, but this should do.
