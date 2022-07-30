@@ -4,6 +4,8 @@ import json
 import os
 import UnityPy
 
+import jsonify_lists
+
 main_py_file_path = os.path.dirname(os.path.realpath(__file__))
 output_directory = f'{main_py_file_path}/output'
 
@@ -14,7 +16,7 @@ def main():
     print('\n')
 
     print('Please input the file path to the base folder with all the characters (which have .dat files in sub-folders)')
-    print('Expecting inside folder structure to be like: {BaseFolder}/{CharacterName}/Material/{.dat files}')
+    print('Expecting inside folder structure to be like: <BaseFolder>/<CharacterName>/Material/<.dat files>')
     dat_files_folder_path = input('Example: G:\Some Folder\Playable Character Materials 2.8\n\n')
     print('\n')
 
@@ -70,7 +72,8 @@ def main():
                 print(f'Writing ".../output/{character_folder}/Material/{file_name}.json"')
                 f.write(json_data)
     
-    print('Done!')
+    print('Done converting .dat to json files')
+    jsonify_lists.jsonify_saved_properties_field()  # Part 2, turn lists into dicts
 
 
 if __name__ == '__main__':
