@@ -78,6 +78,9 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     bpy.context.object.material_slots.get('miHoYo - Genshin Body').material.node_tree.nodes['Body_Normalmap_UV1'].image = img
                 elif "Body_Shadow_Ramp" in file :
                     bpy.data.node_groups['Body Shadow Ramp'].nodes['Body_Shadow_Ramp'].image = img
+                elif "Body_Specular_Ramp" in file :
+                    img.colorspace_settings.name='Non-Color'
+                    bpy.data.node_groups['Body Specular Ramp'].nodes['Body_Specular_Ramp'].image = img
                 elif "Face_Diffuse" in file :
                     bpy.context.view_layer.objects.active = body_var
                     bpy.context.object.material_slots.get('miHoYo - Genshin Face').material.node_tree.nodes['Face_Diffuse'].image = img
