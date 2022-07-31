@@ -21,7 +21,7 @@ def main():
     print('\n')
 
     for character_folder in os.listdir(dat_files_folder_path):
-        material_dat_folder = f'{dat_files_folder_path}/{character_folder}/Material' 
+        material_dat_folder = f'{dat_files_folder_path}/{character_folder}/Material'  # Remove '/Material' if Honkai 
         dat_files = os.listdir(material_dat_folder)
         unique_dat_file_paths = [f'{material_dat_folder}/{dat_file_name}' for dat_file_name in dat_files \
             if '_Mat' in dat_file_name and 
