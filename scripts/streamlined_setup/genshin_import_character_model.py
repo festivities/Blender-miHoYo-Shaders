@@ -79,22 +79,37 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         bpy.ops.object.join()
     
     def __replace_default_materials_with_genshin_materials(self):
+        # TODO: We actually are specifically looking at meshes here...impacts unjoined workflows
         body_mesh_object = [object for object in bpy.context.scene.objects if object.type == 'MESH'][0]
 
         for material_slot in body_mesh_object.material_slots:
             material_name = material_slot.name
-            material_to_replace_with = None
+            mesh_body_part_name = material_name.split('_')[-1]
+            genshin_material = bpy.data.materials.get(f'miHoYo - Genshin {mesh_body_part_name}')
 
-            if 'Hair' in material_name:
-                material_to_replace_with = bpy.data.materials.get('miHoYo - Genshin Hair')
-            elif 'Face' in material_name:
-                material_to_replace_with = bpy.data.materials.get('miHoYo - Genshin Face')
+            if genshin_material:            
+                material_slot.material = genshin_material
+            elif 'Dress' in mesh_body_part_name:
+                genshin_material = self.__clone_material_and_rename(material_slot, 'miHoYo - Genshin Body', mesh_body_part_name)
             else:
-                # Possible incorrect assumption
-                material_to_replace_with = bpy.data.materials.get('miHoYo - Genshin Body')
+                print(f'Ignroing Unknown mesh body part in character model: {mesh_body_part_name}')
+                continue
 
-            material_slot.material = material_to_replace_with
+            genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
+            genshin_main_shader_node.node_tree = self.__clone_shader_node_and_rename(genshin_material, mesh_body_part_name)
         print('Replaced default materials with Genshin shader materials...')
+    
+    def __clone_material_and_rename(self, material_slot, mesh_body_part_name_template, mesh_body_part_name):
+        new_material = bpy.data.materials.get(mesh_body_part_name_template).copy()
+        new_material.name = f'miHoYo - Genshin {mesh_body_part_name}'
+
+        material_slot.material = new_material
+        return new_material
+
+    def __clone_shader_node_and_rename(self, material, mesh_body_part_name):
+        new_shader_node_tree = material.node_tree.nodes.get('Group.001').node_tree.copy()
+        new_shader_node_tree.name = f'miHoYo - Genshin {mesh_body_part_name}'
+        return new_shader_node_tree
 
 
 def register():
