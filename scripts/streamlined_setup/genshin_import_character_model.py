@@ -11,6 +11,7 @@ from bpy.props import StringProperty, IntProperty, BoolProperty, EnumProperty
 from bpy.types import Operator
 import os
 
+# TOOD: Fix imports (requires you to at least do the first step in Import Wizard!)
 import sys
 if './scripts/streamlined_setup' not in sys.path:
     sys.path.append('./scripts/streamlined_setup')
