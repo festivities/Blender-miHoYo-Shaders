@@ -70,6 +70,12 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         'Body'
     ]
 
+    # collei has dress on hair
+    # ganyu has dress on body
+    # yelan has dress1 on body and dress2 on hair
+
+    # backwards compatibility for those who do not merge all objects to Body
+
     def execute(self, context):
         material_data_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
         directory_file_path = os.path.dirname(self.filepath)
