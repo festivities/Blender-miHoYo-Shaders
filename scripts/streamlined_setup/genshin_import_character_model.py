@@ -35,6 +35,8 @@ material_assignment_mapping = {
     }
 }
 
+JOIN_BODY_PARTS = True
+
 
 class GI_OT_GenshinImportModel(Operator, ImportHelper):
     """Select the folder with the desired model to import"""
@@ -71,7 +73,8 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
                         character_name = tmp_character_name
 
         self.__import_character_model(character_model_folder_file_path)
-        self.__join_body_parts_to_body()
+        if JOIN_BODY_PARTS:
+            self.__join_body_parts_to_body()
         self.__replace_default_materials_with_genshin_materials(character_name)
 
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
@@ -107,28 +110,31 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         # TODO: We actually are specifically looking at meshes here...impacts unjoined workflows
         body_mesh_object = [object for object in bpy.context.scene.objects if object.type == 'MESH'][0]
 
-        for material_slot in body_mesh_object.material_slots:
-            material_name = material_slot.name
-            mesh_body_part_name = material_name.split('_')[-1]
-            genshin_material = bpy.data.materials.get(f'miHoYo - Genshin {mesh_body_part_name}')
+        meshes = [mesh for mesh in bpy.context.scene.objects if mesh.type == 'MESH']
 
-            if genshin_material:            
-                material_slot.material = genshin_material
-            elif 'Dress' in mesh_body_part_name:
-                material_mapping = material_assignment_mapping.get(character_name)
-                print(material_mapping)
-                body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')
+        for mesh in meshes:
+            for material_slot in mesh.material_slots:
+                material_name = material_slot.name
+                mesh_body_part_name = material_name.split('_')[-1]
+                genshin_material = bpy.data.materials.get(f'miHoYo - Genshin {mesh_body_part_name}')
 
-                genshin_material = self.__clone_material_and_rename(material_slot, f'miHoYo - Genshin {body_part}', mesh_body_part_name)
-            elif material_name == 'miHoYoDiffuse':
-                material_slot.material = bpy.data.materials.get(f'miHoYo - Genshin Body')
-                continue
-            else:
-                print(f'Ignoring unknown mesh body part in character model: {mesh_body_part_name}')
-                continue
+                if genshin_material:            
+                    material_slot.material = genshin_material
+                elif 'Dress' in mesh_body_part_name:
+                    material_mapping = material_assignment_mapping.get(character_name)
+                    print(material_mapping)
+                    body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')
 
-            genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
-            genshin_main_shader_node.node_tree = self.__clone_shader_node_and_rename(genshin_material, mesh_body_part_name)
+                    genshin_material = self.__clone_material_and_rename(material_slot, f'miHoYo - Genshin {body_part}', mesh_body_part_name)
+                elif material_name == 'miHoYoDiffuse':
+                    material_slot.material = bpy.data.materials.get(f'miHoYo - Genshin Body')
+                    continue
+                else:
+                    print(f'Ignoring unknown mesh body part in character model: {mesh_body_part_name}')
+                    continue
+
+                genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
+                genshin_main_shader_node.node_tree = self.__clone_shader_node_and_rename(genshin_material, mesh_body_part_name)
         print('Replaced default materials with Genshin shader materials...')
     
     def __clone_material_and_rename(self, material_slot, mesh_body_part_name_template, mesh_body_part_name):
