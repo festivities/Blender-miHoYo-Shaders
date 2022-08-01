@@ -55,10 +55,11 @@ def setup_dependencies(filepath):
     from genshin_import_materials import GI_OT_GenshinImportMaterials
     from genshin_import_character_model import GI_OT_GenshinImportModel
     from genshin_import_textures import GI_OT_GenshinImportTextures
+    from genshin_import_material_data import GI_OT_GenshinImportMaterialData
 
     # Originally I tried checking, but this way is less bug-prone and is more Pythonic
     # Tried checking for attributes (on bpy.ops.file.xxx), but it seemed to always return true
-    for class_to_register in [GI_OT_GenshinImportMaterials, GI_OT_GenshinImportModel, GI_OT_GenshinImportTextures]:
+    for class_to_register in [GI_OT_GenshinImportMaterials, GI_OT_GenshinImportModel, GI_OT_GenshinImportTextures, GI_OT_GenshinImportMaterialData]:
         try:
             bpy.utils.register_class(class_to_register)
         except ValueError:
@@ -72,10 +73,12 @@ def unregister():
     from genshin_import_materials import GI_OT_GenshinImportMaterials
     from genshin_import_character_model import GI_OT_GenshinImportModel
     from genshin_import_textures import GI_OT_GenshinImportTextures
+    from genshin_import_material_data import GI_OT_GenshinImportMaterialData
 
     bpy.utils.unregister_class(GI_OT_GenshinImportMaterials)
     bpy.utils.unregister_class(GI_OT_GenshinImportModel)
     bpy.utils.unregister_class(GI_OT_GenshinImportTextures)
+    bpy.utils.unregister_class(GI_OT_GenshinImportMaterialData)
 
 
 if __name__ == "__main__":

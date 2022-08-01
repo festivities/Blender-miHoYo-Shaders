@@ -75,8 +75,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 img.alpha_mode = 'CHANNEL_PACKED'
                 
                 # declare body and face mesh variables
-                body_mesh = bpy.context.scene.objects["Body"]
-                face_mesh = bpy.context.scene.objects["Face"]
+                body_mesh = bpy.context.scene.objects.get("Body")
+                face_mesh = bpy.context.scene.objects.get("Face")
                 
                 # Implement the texture in the correct node
                 if "Hair_Diffuse" in file :
