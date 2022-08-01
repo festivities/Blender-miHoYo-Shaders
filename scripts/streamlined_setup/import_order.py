@@ -16,6 +16,7 @@ steps = {
     1: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_materials, CACHE_KEY: '' },
     2: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_model, CACHE_KEY: '' },
     3: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_textures, CACHE_KEY: CHARACTER_MODEL_FOLDER_FILE_PATH },
+    4: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_material_data, CACHE_KEY: ''}
 }
 
 
