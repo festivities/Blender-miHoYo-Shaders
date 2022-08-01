@@ -4,6 +4,7 @@
 from enum import Enum
 import bpy
 import json
+from pathlib import PurePosixPath
 
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
@@ -11,6 +12,7 @@ from bpy_extras.io_utils import ImportHelper
 from bpy.props import StringProperty, IntProperty, CollectionProperty
 from bpy.types import Operator, PropertyGroup
 import os
+
 
 
 class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
@@ -65,9 +67,8 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         '_FaceBlushColor': 'Blush Color',
     }
 
-    body_parts = [
-        'Hair',
-        'Body'
+    unsupported_body_parts = [
+        'Face'
     ]
 
     # collei has dress on hair
@@ -81,7 +82,11 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         directory_file_path = os.path.dirname(self.filepath)
 
         for file in self.files:
-            body_part = self.body_part_selector(file.name)
+            body_part = PurePosixPath(file.name).stem.split('_')[-1]
+
+            if body_part in self.unsupported_body_parts:
+                print(f'You imported a body part file: {file.name}, which was not expected in unsupported_body_parts: {self.unsupported_body_parts}')
+                continue
 
             node_tree_group001_inputs = bpy.data.materials[f'miHoYo - Genshin {body_part}'].node_tree.nodes["Group.001"].inputs
             global_material_properties_node_inputs = bpy.data.node_groups["GLOBAL MATERIAL PROPERTIES"].nodes["Group Output"].inputs
@@ -90,8 +95,6 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
             json_material_data = json.load(fp)
 
             for material_json_name, material_node_name in self.local_material_mapping.items():
-                # print(material_json_name)
-                # print(material_node_name)
                 material_json_value = self.get_value_in_json(json_material_data, material_json_name)
                 material_node = node_tree_group001_inputs.get(self.local_material_mapping.get(material_json_name))
 
@@ -105,14 +108,11 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                     a = material_json_value['a']
                     material_node.default_value = (r, g, b, a)
                 else:
-                    # print(material_json_value)
                     material_node.default_value = material_json_value
             
             # Not sure, should we only apply Global Material Properties from Body .dat file?
             if body_part == 'Body':
                 for material_json_name, material_node_name in self.global_material_mapping.items():
-                    # print(material_json_name)
-                    # print(material_node_name)
                     material_json_value = self.get_value_in_json(json_material_data, material_json_name)
                     material_node = global_material_properties_node_inputs.get(self.global_material_mapping.get(material_json_name))
 
@@ -126,7 +126,6 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                         a = material_json_value['a']
                         material_node.default_value = (r, g, b, a)
                     else:
-                        # print(material_json_value)
                         material_node.default_value = material_json_value
 
         print('Imported materials...')
@@ -135,14 +134,6 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
     def get_value_in_json(self, json_material_data, key):
         return json_material_data.get('m_SavedProperties').get('m_Floats').get(key) or \
             json_material_data.get('m_SavedProperties').get('m_Colors').get(key)
-    
-    def body_part_selector(self, file_name):
-        for body_part in self.body_parts:
-            if body_part in file_name:
-                return body_part
-        
-        # Unexpectedly reached here, try adding to body_parts list above?
-        raise Exception(f'You imported a body part file: {file_name}, which was not expected in body_parts: {self.body_parts}')
 
 
 def register():
