@@ -18,6 +18,23 @@ if './scripts/streamlined_setup' not in sys.path:
 
 from import_order import invoke_next_step
 
+material_assignment_mapping = {
+    'Yelan': {
+        'miHoYo - Genshin Dress1': 'Body',
+        'miHoYo - Genshin Dress2': 'Hair'
+    },
+    'Collei': {
+        'miHoYo - Genshin Dress': 'Hair'
+    },
+    'Ganyu': {
+        'miHoYo - Genshin Dress': 'Body'
+    },
+    'Rosaria': {
+        'miHoYo - Genshin Dress1': 'Hair',
+        'miHoYo - Genshin Dress2': 'Body'
+    }
+}
+
 
 class GI_OT_GenshinImportModel(Operator, ImportHelper):
     """Select the folder with the desired model to import"""
@@ -46,9 +63,16 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
     def execute(self, context):
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
 
+        character_name = ''
+        for name, folder, files in os.walk(character_model_folder_file_path):
+            for file in files:
+                for tmp_character_name in material_assignment_mapping.keys():
+                    if tmp_character_name in file:
+                        character_name = tmp_character_name
+
         self.__import_character_model(character_model_folder_file_path)
         self.__join_body_parts_to_body()
-        self.__replace_default_materials_with_genshin_materials()
+        self.__replace_default_materials_with_genshin_materials(character_name)
 
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}
@@ -79,7 +103,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         bpy.context.view_layer.objects.active = character_model_body
         bpy.ops.object.join()
     
-    def __replace_default_materials_with_genshin_materials(self):
+    def __replace_default_materials_with_genshin_materials(self, character_name):
         # TODO: We actually are specifically looking at meshes here...impacts unjoined workflows
         body_mesh_object = [object for object in bpy.context.scene.objects if object.type == 'MESH'][0]
 
@@ -91,9 +115,16 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
             if genshin_material:            
                 material_slot.material = genshin_material
             elif 'Dress' in mesh_body_part_name:
-                genshin_material = self.__clone_material_and_rename(material_slot, 'miHoYo - Genshin Body', mesh_body_part_name)
+                material_mapping = material_assignment_mapping.get(character_name)
+                print(material_mapping)
+                body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')
+
+                genshin_material = self.__clone_material_and_rename(material_slot, f'miHoYo - Genshin {body_part}', mesh_body_part_name)
+            elif material_name == 'miHoYoDiffuse':
+                material_slot.material = bpy.data.materials.get(f'miHoYo - Genshin Body')
+                continue
             else:
-                print(f'Ignroing Unknown mesh body part in character model: {mesh_body_part_name}')
+                print(f'Ignoring unknown mesh body part in character model: {mesh_body_part_name}')
                 continue
 
             genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
