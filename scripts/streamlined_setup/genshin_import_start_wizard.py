@@ -6,6 +6,8 @@ from bpy_extras.io_utils import ImportHelper
 from bpy.props import StringProperty
 from bpy.types import Operator
 
+import os
+
 
 class GI_OT_GenshinSetupWizard(Operator, ImportHelper):
     """Setup Wizard Process"""
@@ -42,9 +44,12 @@ def register():
 # We ask for the filepath to Festivity's shaders that way we can set up the scripts in the path
 # I hate this, hopefully there's a better way
 def setup_dependencies(filepath):
+    directory = os.path.dirname(filepath)
+    print(f'Setting up sys.path with {directory}')
+
     import sys
     if filepath not in sys.path:
-        sys.path.append(filepath)
+        sys.path.append(directory)
 
     from import_order import invoke_next_step
     from genshin_import_materials import GI_OT_GenshinImportMaterials
