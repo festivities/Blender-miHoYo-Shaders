@@ -5,6 +5,7 @@ import bpy
 FESTIVITY_ROOT_FOLDER_FILE_PATH = 'FESTIVITY_ROOT_FOLDER_FILE_PATH'
 CHARACTER_MODEL_FOLDER_FILE_PATH = 'CHARACTER_MODEL_FOLDER_FILE_PATH'
 BL_IDNAME_FUNCTION = 'function_to_call'
+ENABLED = 'enabled'
 CACHE_KEY = 'cache'
 
 cache = {
@@ -13,10 +14,26 @@ cache = {
 }
 
 steps = {
-    1: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_materials, CACHE_KEY: '' },
-    2: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_model, CACHE_KEY: '' },
-    3: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_textures, CACHE_KEY: CHARACTER_MODEL_FOLDER_FILE_PATH },
-    4: { BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_material_data, CACHE_KEY: ''}
+    1: {
+        BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_materials,
+        ENABLED: True,
+        CACHE_KEY: ''
+    },
+    2: {
+        BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_model,
+        ENABLED: True,
+        CACHE_KEY: ''
+    },
+    3: {
+        BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_textures,
+        ENABLED: True,
+        CACHE_KEY: CHARACTER_MODEL_FOLDER_FILE_PATH
+    },
+    4: {
+        BL_IDNAME_FUNCTION: bpy.ops.file.genshin_import_material_data,
+        ENABLED: True,
+        CACHE_KEY: ''
+    }
 }
 
 
@@ -25,17 +42,20 @@ def invoke_next_step(current_step_idx: int, file_path_to_cache=None):
         return
     if file_path_to_cache is not None:
         cache_file_path(current_step_idx - 1, file_path_to_cache)
+    
+    if steps[current_step_idx][ENABLED]:
+        execute_or_invoke = 'EXEC' if steps[current_step_idx][CACHE_KEY] else 'INVOKE'
+        cached_file_directory = cache.get(steps[current_step_idx][CACHE_KEY], '')
+        function_to_use = steps[current_step_idx][BL_IDNAME_FUNCTION]
 
-    execute_or_invoke = 'EXEC' if steps[current_step_idx][CACHE_KEY] else 'INVOKE'
-    cached_file_directory = cache.get(steps[current_step_idx][CACHE_KEY], '')
-    function_to_use = steps[current_step_idx][BL_IDNAME_FUNCTION]
-
-    print(f'Calling {function_to_use} with {execute_or_invoke}_DEFAULT')
-    function_to_use(
-            f'{execute_or_invoke}_DEFAULT', 
-            next_step_idx=current_step_idx + 1, 
-            file_directory=cached_file_directory
-    )
+        print(f'Calling {function_to_use} with {execute_or_invoke}_DEFAULT')
+        function_to_use(
+                f'{execute_or_invoke}_DEFAULT', 
+                next_step_idx=current_step_idx + 1, 
+                file_directory=cached_file_directory
+        )
+    else:
+        invoke_next_step(current_step_idx + 1)
 
 
 def cache_file_path(last_step_idx, file_path_to_cache):
