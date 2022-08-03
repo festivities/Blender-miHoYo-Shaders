@@ -1,7 +1,6 @@
 import bpy
 
 try:
-    # from import_order import invoke_next_step
     import import_order
 except:
     print("ERROR: Couldn't import invoke_next_step, run the first step in setup_wizard")
@@ -28,4 +27,5 @@ def join_body_parts_to_body(next_step_idx):
 
 
 if __name__ == '__main__':
+    # If you run this script as a standalone, it will not run other steps (-1 value set below)
     join_body_parts_to_body(-1)
