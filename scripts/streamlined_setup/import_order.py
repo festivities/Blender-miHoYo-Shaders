@@ -8,7 +8,6 @@ try:
 except:
     pass
 
-PATH_FROM_ROOT_TO_STREAMLINED_SETUP = 'scripts/streamlined_setup'
 FESTIVITY_ROOT_FOLDER_FILE_PATH = 'FESTIVITY_ROOT_FOLDER_FILE_PATH'
 CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
 COMPONENT_NAME = 'component_name'
@@ -16,17 +15,23 @@ BL_IDNAME_FUNCTION = 'function_to_call'
 ENABLED = 'enabled'
 CACHE_KEY = 'cache_key'
 
+module_path_to_streamlined_setup = ''
+
 cache = {
     FESTIVITY_ROOT_FOLDER_FILE_PATH: '',
     CHARACTER_MODEL_FOLDER_FILE_PATH: ''
 }
 
 
-def invoke_next_step(current_step_idx: int, file_path_to_cache=None):
+def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_streamlined_setup=''):
+    if path_to_streamlined_setup:
+        global module_path_to_streamlined_setup
+        module_path_to_streamlined_setup = path_to_streamlined_setup
+
     # We use a config.json so that we can make changes without having to restart Blender
     # TODO: Make this a class that gets instantiated in each component? 
     # TOOD: Making a class may allow us to move config.json data back into this module?
-    file = open(f'{PATH_FROM_ROOT_TO_STREAMLINED_SETUP}/config.json')
+    file = open(f'{module_path_to_streamlined_setup}/config.json')
     config = json.load(file)
 
 

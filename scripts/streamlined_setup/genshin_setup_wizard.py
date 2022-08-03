@@ -32,7 +32,7 @@ class GI_OT_GenshinSetupWizard(Operator, ImportHelper):
 
     def execute(self, context):
         invoke_next_step = setup_dependencies(self.filepath)
-        invoke_next_step(1)
+        invoke_next_step(1, path_to_streamlined_setup=os.path.dirname(self.filepath))
         return {'FINISHED'}
 
 
