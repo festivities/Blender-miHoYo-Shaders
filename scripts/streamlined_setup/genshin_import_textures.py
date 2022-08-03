@@ -60,6 +60,9 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 
     def execute(self, context):
         directory = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
+
+        print(self.file_directory)
+        print(self.filepath)
         
         for name, folder, files in os.walk(directory):
             character_name = ''
@@ -77,6 +80,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 # declare body and face mesh variables
                 body_mesh = bpy.context.scene.objects.get("Body")
                 face_mesh = bpy.context.scene.objects.get("Face")
+
+                print(file)
                 
                 # Implement the texture in the correct node
                 if "Hair_Diffuse" in file :
@@ -140,15 +145,23 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
     def setup_dress_textures(self, character_name, texture_name, texture_img):
         material_mapping = self.material_assignment_mapping.get(character_name)
 
-        # Short-circuit, if character is not a special scenario then don't return
-        if not material_mapping:
-            return
+        if material_mapping:
+            for material_name, body_part in material_mapping.items():
+                if body_part in texture_name:
+                    material_shader_nodes = bpy.data.materials.get(material_name).node_tree.nodes
+                    material_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
+                    material_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
 
-        for material_name, body_part in material_mapping.items():
-            if body_part in texture_name:
-                material_shader_nodes = bpy.data.materials.get(material_name).node_tree.nodes
-                material_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
-                material_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
+        # If not found it mapping, default Dress to Body (if current texture_name has Body in it)
+        if 'Body' in texture_name:
+            dress = bpy.data.materials.get('miHoYo - Genshin Dress')
+            if dress:
+                dress_shader_nodes = dress.node_tree.nodes
+                dress_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
+                dress_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
+        return
+
+
 
 
 def register():
