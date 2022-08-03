@@ -54,7 +54,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
         },
         'Rosaria': {
             'miHoYo - Genshin Dress1': 'Hair',
-            'miHoYo - GEnshin Dress2': 'Body'
+            'miHoYo - Genshin Dress2': 'Body'
         }
     }
 
