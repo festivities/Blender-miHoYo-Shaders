@@ -30,6 +30,11 @@
         "cache_key": ""
     },
     "7": {
+        "component_name": "import_outline_lightmaps",
+        "enabled": true,
+        "cache_key": ""
+    },
+    "8": {
         "component_name": "import_material_data",
         "enabled": true,
         "cache_key": ""
