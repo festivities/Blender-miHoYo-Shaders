@@ -5,6 +5,7 @@ import json
 
 try:
     from join_body_parts_to_body import join_body_parts_to_body
+    from genshin_setup_geometry_nodes import setup_geometry_nodes
 except:
     pass
 
@@ -79,6 +80,10 @@ class ComponentFunctionFactory:
             return bpy.ops.file.genshin_import_model
         elif component_name == 'import_character_textures':
             return bpy.ops.file.genshin_import_textures
+        elif component_name == 'import_outlines':
+            return bpy.ops.file.genshin_import_outlines
+        elif component_name == 'setup_geometry_nodes':
+            return setup_geometry_nodes
         elif component_name == 'import_material_data':
             return bpy.ops.file.genshin_import_material_data
         else:
