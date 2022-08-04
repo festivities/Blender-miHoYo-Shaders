@@ -77,7 +77,7 @@ def clone_outlines():
     materials = bpy.data.materials.values()
 
     for material in materials:
-        if 'miHoYo - Genshin' in material.name:
+        if 'miHoYo - Genshin' in material.name and material.name != 'miHoYo - Genshin Outlines':
             outline_material = bpy.data.materials.get('miHoYo - Genshin Outlines')
             new_outline_name = f'{material.name} Outlines'
 
