@@ -14,7 +14,6 @@ from bpy.types import Operator, PropertyGroup
 import os
 
 
-
 class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
     """Select Material Json Data Files"""
     bl_idname = "file.genshin_import_material_data"  # important since its how we chain file dialogs
@@ -62,6 +61,14 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         '_ShadowRampWidth': 'Ramp Width *NdotL only* *Ramp only*'
     }
 
+    outline_mapping = {
+        '_OutlineColor': 'Outline Color 1',
+        '_OutlineColor2': 'Outline Color 2',
+        '_OutlineColor3': 'Outline Color 3',
+        '_OutlineColor4': 'Outline Color 4',
+        '_OutlineColor5': 'Outline Color 5'
+    }
+
     global_material_mapping = {
         '_MTUseSpecularRamp': 'Use Specular Ramp?',
         '_FaceBlushColor': 'Blush Color',
@@ -95,7 +102,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
             json_material_data = json.load(fp)
 
             for material_json_name, material_node_name in self.local_material_mapping.items():
-                material_json_value = self.get_value_in_json(json_material_data, material_json_name)
+                material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
                 material_node = node_tree_group001_inputs.get(self.local_material_mapping.get(material_json_name))
 
                 if not material_json_value:
@@ -113,7 +120,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
             # Not sure, should we only apply Global Material Properties from Body .dat file?
             if body_part == 'Body':
                 for material_json_name, material_node_name in self.global_material_mapping.items():
-                    material_json_value = self.get_value_in_json(json_material_data, material_json_name)
+                    material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
                     material_node = global_material_properties_node_inputs.get(self.global_material_mapping.get(material_json_name))
 
                     if not material_json_value:
@@ -127,11 +134,30 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                         material_node.default_value = (r, g, b, a)
                     else:
                         material_node.default_value = material_json_value
+            self.setup_outline_colors(json_material_data)
 
         print('Imported materials...')
         return {'FINISHED'}
     
-    def get_value_in_json(self, json_material_data, key):
+    # TODO: new multiple outline materials and body parts
+    def setup_outline_colors(self, json_material_data):
+        outlines_material = bpy.data.materials.get('miHoYo - Genshin Outlines')
+        outlines_shader_node_inputs = outlines_material.node_tree.nodes.get('Group.002').inputs
+
+        for material_json_name, material_node_name in self.outline_mapping.items():
+            material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
+            shader_node_input = outlines_shader_node_inputs.get(material_node_name)
+
+            if not material_json_value:
+                continue
+            
+            r = material_json_value['r']
+            g = material_json_value['g']
+            b = material_json_value['b']
+            a = material_json_value['a']
+            shader_node_input.default_value = (r, g, b, a)
+    
+    def __get_value_in_json(self, json_material_data, key):
         return json_material_data.get('m_SavedProperties').get('m_Floats').get(key) or \
             json_material_data.get('m_SavedProperties').get('m_Colors').get(key)
 
