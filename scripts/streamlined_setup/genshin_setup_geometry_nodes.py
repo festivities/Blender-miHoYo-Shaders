@@ -51,6 +51,7 @@ face_meshes = [
 
 
 def setup_geometry_nodes(next_step_idx):
+    clone_outlines()
     for mesh in meshes_to_create_geometry_nodes_on:
         create_geometry_nodes_modifier(f'{mesh}{BODY_PART_SUFFIX}')
     fix_meshes_by_setting_any_genshin_material()
@@ -72,6 +73,18 @@ def create_geometry_nodes_modifier(mesh_name):
     return geometry_nodes_modifier
 
 
+def clone_outlines():
+    materials = bpy.data.materials.values()
+
+    for material in materials:
+        if 'miHoYo - Genshin' in material.name:
+            outline_material = bpy.data.materials.get('miHoYo - Genshin Outlines')
+            new_outline_name = f'{material.name} Outlines'
+
+            new_outline_material = outline_material.copy()
+            new_outline_material.name = new_outline_name
+
+
 def setup_modifier_default_values(modifier, mesh):
     # if bpy.context.object.modifiers[f'{NAME_OF_GEOMETRY_NODES_MODIFIER}{mesh.name}'][f'{NAME_OF_VERTEX_COLORS_INPUT}_use_attribute'] == 0:
     if modifier[f'{NAME_OF_VERTEX_COLORS_INPUT}_use_attribute'] == 0:
@@ -85,7 +98,7 @@ def setup_modifier_default_values(modifier, mesh):
 
     for (mask_input, material_input), material in zip(outline_mask_to_material_mapping.items(), mesh.material_slots):
         modifier[mask_input] = bpy.data.materials[material.name]
-        modifier[material_input] = bpy.data.materials['miHoYo - Genshin Outlines']
+        modifier[material_input] = bpy.data.materials[f'{material.name} Outlines']
 
 
 def fix_meshes_by_setting_any_genshin_material():
@@ -99,4 +112,4 @@ def fix_meshes_by_setting_any_genshin_material():
 
 
 if __name__ == '__main__':
-    setup_geometry_nodes()
+    setup_geometry_nodes(-1)

@@ -74,9 +74,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         '_FaceBlushColor': 'Blush Color',
     }
 
-    unsupported_body_parts = [
-        'Face'
-    ]
+    unsupported_body_parts = []
 
     # collei has dress on hair
     # ganyu has dress on body
@@ -101,27 +99,10 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
             fp = open(f'{directory_file_path}/{file.name}')
             json_material_data = json.load(fp)
 
-            for material_json_name, material_node_name in self.local_material_mapping.items():
-                material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
-                material_node = node_tree_group001_inputs.get(self.local_material_mapping.get(material_json_name))
-
-                if not material_json_value:
-                    continue
-
-                if type(material_node) is bpy.types.NodeSocketColor:
-                    r = material_json_value['r']
-                    g = material_json_value['g']
-                    b = material_json_value['b']
-                    a = material_json_value['a']
-                    material_node.default_value = (r, g, b, a)
-                else:
-                    material_node.default_value = material_json_value
-            
-            # Not sure, should we only apply Global Material Properties from Body .dat file?
-            if body_part == 'Body':
-                for material_json_name, material_node_name in self.global_material_mapping.items():
+            if body_part != 'Face':
+                for material_json_name, material_node_name in self.local_material_mapping.items():
                     material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
-                    material_node = global_material_properties_node_inputs.get(self.global_material_mapping.get(material_json_name))
+                    material_node = node_tree_group001_inputs.get(self.local_material_mapping.get(material_json_name))
 
                     if not material_json_value:
                         continue
@@ -134,14 +115,31 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                         material_node.default_value = (r, g, b, a)
                     else:
                         material_node.default_value = material_json_value
-            self.setup_outline_colors(json_material_data)
+                
+                # Not sure, should we only apply Global Material Properties from Body .dat file?
+                if body_part == 'Body':
+                    for material_json_name, material_node_name in self.global_material_mapping.items():
+                        material_json_value = self.__get_value_in_json(json_material_data, material_json_name)
+                        material_node = global_material_properties_node_inputs.get(self.global_material_mapping.get(material_json_name))
+
+                        if not material_json_value:
+                            continue
+
+                        if type(material_node) is bpy.types.NodeSocketColor:
+                            r = material_json_value['r']
+                            g = material_json_value['g']
+                            b = material_json_value['b']
+                            a = material_json_value['a']
+                            material_node.default_value = (r, g, b, a)
+                        else:
+                            material_node.default_value = material_json_value
+            self.setup_outline_colors(json_material_data, body_part)
 
         print('Imported materials...')
         return {'FINISHED'}
-    
-    # TODO: new multiple outline materials and body parts
-    def setup_outline_colors(self, json_material_data):
-        outlines_material = bpy.data.materials.get('miHoYo - Genshin Outlines')
+
+    def setup_outline_colors(self, json_material_data, body_part):
+        outlines_material = bpy.data.materials.get(f'miHoYo - Genshin {body_part} Outlines')
         outlines_shader_node_inputs = outlines_material.node_tree.nodes.get('Group.002').inputs
 
         for material_json_name, material_node_name in self.outline_mapping.items():
