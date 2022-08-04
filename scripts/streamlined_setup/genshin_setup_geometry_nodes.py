@@ -2,6 +2,11 @@
 
 import bpy
 
+try:
+    import import_order
+except:
+    print("ERROR: Couldn't import invoke_next_step, run the first step in setup_wizard")
+
 # Notes:
 # Create GeometryNodes for each Mesh under the Armature
 # Assign to the Mask the Materials that are under that Mesh
@@ -45,11 +50,12 @@ face_meshes = [
 ]
 
 
-def main():
+def setup_geometry_nodes(next_step_idx):
     for mesh in meshes_to_create_geometry_nodes_on:
         create_geometry_nodes_modifier(f'{mesh}{BODY_PART_SUFFIX}')
     fix_meshes_by_setting_any_genshin_material()
     # configure_genshin_outlines_color()
+    import_order.invoke_next_step(next_step_idx)
 
 
 def create_geometry_nodes_modifier(mesh_name):
@@ -93,4 +99,4 @@ def fix_meshes_by_setting_any_genshin_material():
 
 
 if __name__ == '__main__':
-    main()
+    setup_geometry_nodes()
