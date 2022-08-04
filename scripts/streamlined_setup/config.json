@@ -11,7 +11,7 @@
     },
     "3": {
         "component_name": "import_character_model",
-        "enabled": true,
+        "enabled": false,
         "cache_key": ""
     },
     "4": {
