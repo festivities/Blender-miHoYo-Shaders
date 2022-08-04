@@ -84,6 +84,8 @@ class ComponentFunctionFactory:
             return bpy.ops.file.genshin_import_outlines
         elif component_name == 'setup_geometry_nodes':
             return setup_geometry_nodes
+        elif component_name == 'import_outline_lightmaps':
+            return bpy.ops.file.genshin_import_outline_lightmaps
         elif component_name == 'import_material_data':
             return bpy.ops.file.genshin_import_material_data
         else:
