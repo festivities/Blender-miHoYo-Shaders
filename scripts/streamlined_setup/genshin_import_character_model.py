@@ -39,7 +39,7 @@ material_assignment_mapping = {
 class GI_OT_GenshinImportModel(Operator, ImportHelper):
     """Select the folder with the desired model to import"""
     bl_idname = "file.genshin_import_model"  # important since its how we chain file dialogs
-    bl_label = "2_Genshin: Select Model Folder"
+    bl_label = "3_Genshin: Select Model Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

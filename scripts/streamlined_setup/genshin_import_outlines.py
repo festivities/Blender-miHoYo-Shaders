@@ -21,7 +21,7 @@ from import_order import invoke_next_step
 class GI_OT_GenshinImportOutlines(Operator, ImportHelper):
     """Select the `miHoYo - Outlines` to import Outlines"""
     bl_idname = "file.genshin_import_outlines"  # important since its how we chain file dialogs
-    bl_label = "9_Genshin: Select with `miHoYo - Outlines`"
+    bl_label = "5_Genshin: Select with `miHoYo - Outlines`"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

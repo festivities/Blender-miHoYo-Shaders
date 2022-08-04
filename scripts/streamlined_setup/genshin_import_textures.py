@@ -21,7 +21,7 @@ from import_order import invoke_next_step
 class GI_OT_GenshinImportTextures(Operator, ImportHelper):
     """Select the folder with the model's textures to import"""
     bl_idname = "file.genshin_import_textures"  # important since its how we chain file dialogs
-    bl_label = "3_Genshin: Select Texture Folder"
+    bl_label = "4_Genshin: Select Texture Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"
