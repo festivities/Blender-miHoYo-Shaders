@@ -1,0 +1,37 @@
+{
+    "1": {
+        "component_name": "import_materials",
+        "enabled": true,
+        "cache_key": ""
+    },
+    "2": {
+        "component_name": "join_body_parts_to_body",
+        "enabled": false,
+        "cache_key": ""
+    },
+    "3": {
+        "component_name": "import_character_model",
+        "enabled": true,
+        "cache_key": ""
+    },
+    "4": {
+        "component_name": "import_character_textures",
+        "enabled": true,
+        "cache_key": "character_model_folder_file_path"
+    },
+    "5": {
+        "component_name": "import_outlines",
+        "enabled": true,
+        "cache_key": ""
+    },
+    "6": {
+        "component_name": "setup_geometry_nodes",
+        "enabled": true,
+        "cache_key": ""
+    },
+    "7": {
+        "component_name": "import_material_data",
+        "enabled": true,
+        "cache_key": ""
+    }
+}
