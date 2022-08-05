@@ -52,9 +52,9 @@ face_meshes = [
 
 def setup_geometry_nodes(next_step_idx):
     clone_outlines()
-    for mesh in meshes_to_create_geometry_nodes_on:
-        create_geometry_nodes_modifier(f'{mesh}{BODY_PART_SUFFIX}')
-    fix_meshes_by_setting_any_genshin_material()
+    for mesh_name in meshes_to_create_geometry_nodes_on:
+        create_geometry_nodes_modifier(f'{mesh_name}{BODY_PART_SUFFIX}')
+        fix_meshes_by_setting_genshin_materials(mesh_name)
 
     if next_step_idx:
         import_order.invoke_next_step(next_step_idx)
@@ -111,9 +111,9 @@ def disable_face_eye_outlines(modifier):
     modifier[OUTLINE_THICKNESS_INPUT] = 0.0
 
 
-def fix_meshes_by_setting_any_genshin_material():
-    body_mesh = bpy.context.scene.objects['Body']
-    body_mesh.material_slots.get('miHoYo - Genshin Body').material = bpy.data.materials.get('miHoYo - Genshin Body')
+def fix_meshes_by_setting_genshin_materials(mesh_name):
+    for material_slot_name, material_slot in bpy.context.scene.objects[mesh_name].material_slots.items():
+        bpy.context.scene.objects[mesh_name].material_slots.get(material_slot_name).material = material_slot.material
 
 
 if __name__ == '__main__':
