@@ -2,46 +2,82 @@
     "1": {
         "component_name": "import_materials",
         "enabled": true,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Import Genshin Materials (Hair, Face, Body, Outline)",
+            "requires": "Folder of Festivity's project"
+        }
     },
     "2": {
-        "component_name": "join_body_parts_to_body",
-        "enabled": false,
-        "cache_key": ""
-    },
-    "3": {
         "component_name": "import_character_model",
         "enabled": false,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Import character model",
+            "requires": "Folder with character model fbx file in it"
+        }
+    },
+    "3": {
+        "component_name": "join_body_parts_to_body",
+        "enabled": false,
+        "cache_key": "",
+        "metadata": {
+            "description": "[DEPRECATED] Unsupported and will break on step 6 and beyond if enabled",
+            "requires": "None"
+        }
     },
     "4": {
         "component_name": "import_character_textures",
         "enabled": true,
-        "cache_key": "character_model_folder_file_path"
+        "cache_key": "character_model_folder_file_path",
+        "metadata": {
+            "description": "Import character textures",
+            "requires": "Folder with character textures (lightmaps, difuses, etc.) in it"
+        }
     },
     "5": {
         "component_name": "import_outlines",
         "enabled": true,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Import 'miHoYo - Outlines'",
+            "requires": "File named 'miHoYo - Outlines'"
+        }
     },
     "6": {
         "component_name": "setup_geometry_nodes",
         "enabled": true,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Sets up outlines (geometry nodes modifiers)",
+            "requires": "None"
+        }
     },
     "7": {
         "component_name": "import_outline_lightmaps",
         "enabled": true,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Import lightmaps for outlines (Hair and Body)",
+            "requires": "Folder with lightmap files in it"
+        }
     },
     "8": {
         "component_name": "import_material_data",
         "enabled": true,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Import material model (outline colors, shininess, metallic specular color, etc.",
+            "requires": "Select all files (shift + click) of a character's material json"
+        }
     },
     "9": {
         "component_name": "fix_mouth_outlines",
         "enabled": false,
-        "cache_key": ""
+        "cache_key": "",
+        "metadata": {
+            "description": "Fixes mouth outlines -- assigns 'Camera' to Face outlines and applies a Depth Offset",
+            "requires": "None"
+        }
     }
 }
