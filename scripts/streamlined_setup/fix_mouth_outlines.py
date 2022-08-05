@@ -25,6 +25,7 @@ def fix_face_mouth_outlines_protruding_out(next_step_idx):
         outline_modifiers = [outline_modifier for outline_modifier in face_object.modifiers.values() \
             if GEOMETRY_NODES_PREFIX in outline_modifier.name]
         set_camera_and_depth_offset(outline_modifiers, camera)
+        fix_meshes_by_setting_genshin_materials(face_object.name)
 
     import_order.invoke_next_step(next_step_idx)
 
@@ -53,6 +54,11 @@ def set_camera_in_front_of_armature(camera):
     camera.location[2] += 1.3  # z-axis, head level
     camera.rotation_euler[0] = 1.5708  # x-axis, 90 degrees 
     camera.rotation_euler[2] = 0  # z-axis, facing character
+
+
+def fix_meshes_by_setting_genshin_materials(mesh_name):
+    for material_slot_name, material_slot in bpy.context.scene.objects[mesh_name].material_slots.items():
+        bpy.context.scene.objects[mesh_name].material_slots.get(material_slot_name).material = material_slot.material
 
 
 def main():
