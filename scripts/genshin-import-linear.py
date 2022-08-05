@@ -59,7 +59,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     bpy.context.view_layer.objects.active = body_var
                     img.colorspace_settings.name='Non-Color'
                     bpy.context.object.material_slots.get('miHoYo - Genshin Hair').material.node_tree.nodes['Hair_Normalmap_UV0'].image = img
-                    bpy.context.object.material_slots.get('miHoYo - Genshin Hair').material.node_tree.nodes['Hair_Normalmap_UV0'].image = img
+                    bpy.context.object.material_slots.get('miHoYo - Genshin Hair').material.node_tree.nodes['Hair_Normalmap_UV1'].image = img
                 elif "Hair_Shadow_Ramp" in file :
                     bpy.data.node_groups['Hair Shadow Ramp'].nodes['Hair_Shadow_Ramp'].image = img
                 elif "Body_Diffuse" in file :
