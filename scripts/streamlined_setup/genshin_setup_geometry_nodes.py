@@ -5,7 +5,7 @@ import bpy
 try:
     import import_order
 except:
-    print("ERROR: Couldn't import invoke_next_step, run the first step in setup_wizard")
+    print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
 # Notes:
 # Create GeometryNodes for each Mesh under the Armature
@@ -16,7 +16,7 @@ except:
 # Constants
 NAME_OF_GEOMETRY_NODES_MODIFIER = 'GeometryNodes'
 NAME_OF_VERTEX_COLORS_INPUT = 'Input_3'
-NAME_OF_OUTLINE_THICKNESS_INPUT = 'Input_7'
+OUTLINE_THICKNESS_INPUT = 'Input_7'
 BODY_PART_SUFFIX = ''
 
 NAME_OF_OUTLINE_1_MASK_INPUT = 'Input_10'
@@ -55,8 +55,9 @@ def setup_geometry_nodes(next_step_idx):
     for mesh in meshes_to_create_geometry_nodes_on:
         create_geometry_nodes_modifier(f'{mesh}{BODY_PART_SUFFIX}')
     fix_meshes_by_setting_any_genshin_material()
-    # configure_genshin_outlines_color()
-    import_order.invoke_next_step(next_step_idx)
+
+    if next_step_idx:
+        import_order.invoke_next_step(next_step_idx)
 
 
 def create_geometry_nodes_modifier(mesh_name):
@@ -86,7 +87,6 @@ def clone_outlines():
 
 
 def setup_modifier_default_values(modifier, mesh):
-    # if bpy.context.object.modifiers[f'{NAME_OF_GEOMETRY_NODES_MODIFIER}{mesh.name}'][f'{NAME_OF_VERTEX_COLORS_INPUT}_use_attribute'] == 0:
     if modifier[f'{NAME_OF_VERTEX_COLORS_INPUT}_use_attribute'] == 0:
         # Important! Override object key so we don't use the context (ex. selected object)
         bpy.ops.object.geometry_nodes_input_attribute_toggle(
@@ -96,9 +96,19 @@ def setup_modifier_default_values(modifier, mesh):
 
     modifier[f'{NAME_OF_VERTEX_COLORS_INPUT}_attribute_name'] = 'Col'
 
+    if mesh.name == 'Face_Eye':
+        disable_face_eye_outlines(modifier)
+
     for (mask_input, material_input), material in zip(outline_mask_to_material_mapping.items(), mesh.material_slots):
         modifier[mask_input] = bpy.data.materials[material.name]
         modifier[material_input] = bpy.data.materials[f'{material.name} Outlines']
+
+
+def disable_face_eye_outlines(modifier):
+    # Specifically do not try to get modifiers from context because context does not have newly
+    # created geometry nodes yet during the setup_wizard!!
+    # face_eye_outlines = bpy.context.object.modifiers.get('GeometryNodes Face_Eye')
+    modifier[OUTLINE_THICKNESS_INPUT] = 0.0
 
 
 def fix_meshes_by_setting_any_genshin_material():
@@ -106,10 +116,5 @@ def fix_meshes_by_setting_any_genshin_material():
     body_mesh.material_slots.get('miHoYo - Genshin Body').material = bpy.data.materials.get('miHoYo - Genshin Body')
 
 
-# def configure_genshin_outlines_color():
-#     bpy.data.materials["miHoYo - Genshin Outlines"]
-#     bpy.data.materials["miHoYo - Genshin Outlines"].node_tree.nodes.active.inputs[1].default_value = (0.073, 0.027, 0.008, 1)
-
-
 if __name__ == '__main__':
-    setup_geometry_nodes(-1)
+    setup_geometry_nodes(None)
