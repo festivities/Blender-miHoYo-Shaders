@@ -6,8 +6,9 @@ import json
 try:
     from join_body_parts_to_body import join_body_parts_to_body
     from genshin_setup_geometry_nodes import setup_geometry_nodes
+    from fix_mouth_outlines import fix_face_mouth_outlines_protruding_out
 except:
-    pass
+    print('Exception when trying to import required dependency scripts!')
 
 FESTIVITY_ROOT_FOLDER_FILE_PATH = 'FESTIVITY_ROOT_FOLDER_FILE_PATH'
 CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
@@ -88,5 +89,7 @@ class ComponentFunctionFactory:
             return bpy.ops.file.genshin_import_outline_lightmaps
         elif component_name == 'import_material_data':
             return bpy.ops.file.genshin_import_material_data
+        elif component_name == 'fix_mouth_outlines':
+            return fix_face_mouth_outlines_protruding_out
         else:
             raise Exception(f'Unknown component name passed into {__name__}: {component_name}')

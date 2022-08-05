@@ -38,5 +38,10 @@
         "component_name": "import_material_data",
         "enabled": true,
         "cache_key": ""
+    },
+    "9": {
+        "component_name": "fix_mouth_outlines",
+        "enabled": false,
+        "cache_key": ""
     }
 }
