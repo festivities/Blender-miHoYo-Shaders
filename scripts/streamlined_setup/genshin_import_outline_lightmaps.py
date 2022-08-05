@@ -70,13 +70,19 @@ class GI_OT_GenshinImportOutlineLightmaps(Operator, ImportHelper):
         
 
             for tmp_character_name in self.material_assignment_mapping.keys():
-                if tmp_character_name in files:
-                    character_name = tmp_character_name
+                for file in files:
+                    if tmp_character_name in file:
+                        character_name = tmp_character_name
+                        break
             character_material_mapping = self.material_assignment_mapping.get(character_name)
-
             outline_materials = [material for material in bpy.data.materials.values() if 'Outlines' in material.name and material.name != 'miHoYo - Genshin Outlines']
+
             for outline_material in outline_materials:
-                material_part_name = self.material_assignment_mapping.get(character_name)
+                original_material_name = outline_material.name.strip(' Outlines')
+                material_part_name = character_material_mapping.get(original_material_name) if character_material_mapping else ''
+                # print(f'original: {original_material_name}')
+                # print(f'material: {material_part_name}')
+                material_part_name_lightmap = material_part_name
                 if not material_part_name:
                     material_part_name = outline_material.name.split(' ')[-2]
                     material_part_name_lightmap = 'Body' if material_part_name == 'Dress' else \
