@@ -99,6 +99,7 @@ class GI_OT_GenshinImportOutlineLightmaps(Operator, ImportHelper):
                     img.alpha_mode = 'CHANNEL_PACKED'
 
                     bpy.data.materials.get(f'miHoYo - Genshin {material_part_name} Outlines').node_tree.nodes.get('Image Texture').image = img
+            break  # IMPORTANT: We os.walk which also traverses through folders...we just want the files
 
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}

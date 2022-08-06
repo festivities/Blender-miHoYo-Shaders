@@ -71,6 +71,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 for tmp_character_name in self.material_assignment_mapping.keys():
                     if tmp_character_name in file:
                         character_name = tmp_character_name
+                        break
 
             for file in files :
                 # load the file with the correct alpha mode
@@ -138,6 +139,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     bpy.data.node_groups['Metallic Matcap'].nodes['MetalMap'].image = img
                 else :
                     pass
+            break  # IMPORTANT: We os.walk which also traverses through folders...we just want the files
 
         print('Imported textures...')
         invoke_next_step(self.next_step_idx, directory)
@@ -152,9 +154,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     material_shader_nodes = bpy.data.materials.get(material_name).node_tree.nodes
                     material_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
                     material_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
-
-        # If not found it mapping, default Dress to Body (if current texture_name has Body in it)
-        if 'Body' in texture_name:
+        else:
+            # If not found it mapping, default Dress to Body (if current texture_name has Body in it)
             dress = bpy.data.materials.get('miHoYo - Genshin Dress')
             if dress:
                 dress_shader_nodes = dress.node_tree.nodes
