@@ -7,12 +7,6 @@ try:
 except:
     print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
-# Notes:
-# Create GeometryNodes for each Mesh under the Armature
-# Assign to the Mask the Materials that are under that Mesh
-# EyeStar, Brow, probably don't need Outlines, but..oh well, that's probably fine
-
-
 # Constants
 NAME_OF_GEOMETRY_NODES_MODIFIER = 'GeometryNodes'
 NAME_OF_VERTEX_COLORS_INPUT = 'Input_3'
@@ -106,8 +100,8 @@ def setup_modifier_default_values(modifier, mesh):
 
 def disable_face_eye_outlines(modifier):
     # Specifically do not try to get modifiers from context because context does not have newly
-    # created geometry nodes yet during the setup_wizard!!
-    # face_eye_outlines = bpy.context.object.modifiers.get('GeometryNodes Face_Eye')
+    # created geometry nodes yet during the setup_wizard!! (or it just doesn't work in general)
+    # face_eye_outlines = bpy.context.object.modifiers.get('GeometryNodes Face_Eye')  # Bad!
     modifier[OUTLINE_THICKNESS_INPUT] = 0.0
 
 
