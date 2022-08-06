@@ -105,6 +105,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
                 if genshin_material:            
                     material_slot.material = genshin_material
                 elif 'Dress' in mesh_body_part_name:
+                    print('Dress detected on character model!')
                     material_mapping = material_assignment_mapping.get(character_name)
                     print(material_mapping)
 
