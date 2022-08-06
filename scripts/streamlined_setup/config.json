@@ -1,8 +1,17 @@
 {
+    "0": {
+        "component_name": "import_python_dependencies/genshin_setup_wizard",
+        "enabled": true,
+        "cache_key": "festivity_root_folder_file_path",
+        "metadata": {
+            "description": "Need to set sys.path so that all components can access import_order",
+            "requires": "Folder of Festivity's project"
+        }
+    },
     "1": {
         "component_name": "import_materials",
         "enabled": true,
-        "cache_key": "",
+        "cache_key": "festivity_root_folder_file_path",
         "metadata": {
             "description": "Import Genshin Materials (Hair, Face, Body, Outline)",
             "requires": "Folder of Festivity's project"
@@ -10,8 +19,8 @@
     },
     "2": {
         "component_name": "import_character_model",
-        "enabled": false,
-        "cache_key": "",
+        "enabled": true,
+        "cache_key": "character_model_folder_file_path",
         "metadata": {
             "description": "Import character model",
             "requires": "Folder with character model fbx file in it"
@@ -56,7 +65,7 @@
     "7": {
         "component_name": "import_outline_lightmaps",
         "enabled": true,
-        "cache_key": "",
+        "cache_key": "character_model_folder_file_path",
         "metadata": {
             "description": "Import lightmaps for outlines (Hair and Body)",
             "requires": "Folder with lightmap files in it"

@@ -10,7 +10,7 @@ try:
 except:
     print('Exception when trying to import required dependency scripts!')
 
-FESTIVITY_ROOT_FOLDER_FILE_PATH = 'FESTIVITY_ROOT_FOLDER_FILE_PATH'
+FESTIVITY_ROOT_FOLDER_FILE_PATH = 'festivity_root_folder_file_path'
 CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
 COMPONENT_NAME = 'component_name'
 BL_IDNAME_FUNCTION = 'function_to_call'
@@ -18,11 +18,6 @@ ENABLED = 'enabled'
 CACHE_KEY = 'cache_key'
 
 module_path_to_streamlined_setup = ''
-
-cache = {
-    FESTIVITY_ROOT_FOLDER_FILE_PATH: '',
-    CHARACTER_MODEL_FOLDER_FILE_PATH: ''
-}
 
 
 def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_streamlined_setup=''):
@@ -36,12 +31,22 @@ def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_str
     file = open(f'{module_path_to_streamlined_setup}/config.json')
     config = json.load(file)
 
+    cache_file_path = f'{module_path_to_streamlined_setup}/cache.json.tmp'
+    if current_step_idx == 1:
+        with open(cache_file_path, 'w') as f:
+            json.dump({}, f)
+    cache_file = open(cache_file_path)
+    cache = json.load(cache_file)
+
 
     if current_step_idx <= 0 or current_step_idx > len(config):
         return
-    # Disabled cache, it does not work as intended b/c it carries over from past usage
-    # if file_path_to_cache is not None and config[current_step_idx][CACHE_KEY]:
-    #     cache_file_path(config, current_step_idx - 1, file_path_to_cache)
+
+    previous_step = config.get(str(current_step_idx - 1))
+    if file_path_to_cache and previous_step and previous_step[CACHE_KEY]:
+        cache_previous_step_file_path(cache, previous_step, file_path_to_cache)
+        with open(cache_file_path, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False, indent=4)
     
     if config[str(current_step_idx)][ENABLED]:
         cached_file_directory = cache.get(config[str(current_step_idx)][CACHE_KEY], '')
@@ -62,9 +67,8 @@ def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_str
         invoke_next_step(current_step_idx + 1)
 
 
-def cache_file_path(config, last_step_idx, file_path_to_cache):
-    step = config[str(last_step_idx)]
-    step_cache_key = step.get(CACHE_KEY)
+def cache_previous_step_file_path(cache, last_step, file_path_to_cache):
+    step_cache_key = last_step.get(CACHE_KEY)
 
     print(f'Assigning `{step_cache_key}:{file_path_to_cache}` in cache')
     cache[step_cache_key] = file_path_to_cache
