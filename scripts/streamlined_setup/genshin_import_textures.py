@@ -161,9 +161,6 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 dress_shader_nodes = dress.node_tree.nodes
                 dress_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
                 dress_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
-        return
-
-
 
 
 def register():
