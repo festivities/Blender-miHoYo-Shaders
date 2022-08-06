@@ -28,12 +28,12 @@
         }
     },
     "3": {
-        "component_name": "join_body_parts_to_body",
-        "enabled": false,
-        "cache_key": "",
+        "component_name": "replace_default_materials",
+        "enabled": true,
+        "cache_key": "character_model_folder_file_path",
         "metadata": {
-            "description": "[DEPRECATED] Unsupported and will break on step 6 and beyond if enabled",
-            "requires": "None"
+            "description": "Replaces default materials and separates them out accordingly",
+            "requires": "Folder with character model fbx file in it"
         }
     },
     "4": {

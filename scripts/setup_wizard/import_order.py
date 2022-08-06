@@ -85,6 +85,8 @@ class ComponentFunctionFactory:
             return join_body_parts_to_body
         elif component_name == 'import_character_model':
             return bpy.ops.file.genshin_import_model
+        elif component_name == 'replace_default_materials':
+            return bpy.ops.file.genshin_replace_default_materials
         elif component_name == 'import_character_textures':
             return bpy.ops.file.genshin_import_textures
         elif component_name == 'import_outlines':

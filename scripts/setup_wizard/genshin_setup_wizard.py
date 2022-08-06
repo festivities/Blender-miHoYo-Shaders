@@ -12,7 +12,7 @@ import os
 class GI_OT_GenshinSetupWizard(Operator, ImportHelper):
     """Setup Wizard Process"""
     bl_idname = "file.genshin_setup_wizard"
-    bl_label = "Genshin: Setup Wizard -  Select Festivity's Shaders Folder"
+    bl_label = "0_Genshin: Setup Wizard -  Select Festivity's Shaders Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"
@@ -59,6 +59,7 @@ def setup_dependencies(filepath):
     from scripts.setup_wizard.import_order import invoke_next_step
     from scripts.setup_wizard.genshin_import_materials import GI_OT_GenshinImportMaterials
     from scripts.setup_wizard.genshin_import_character_model import GI_OT_GenshinImportModel
+    from scripts.setup_wizard.genshin_replace_default_materials import GI_OT_GenshinReplaceDefaultMaterials
     from scripts.setup_wizard.genshin_import_textures import GI_OT_GenshinImportTextures
     from scripts.setup_wizard.genshin_import_outlines import GI_OT_GenshinImportOutlines
     from scripts.setup_wizard.genshin_import_outline_lightmaps import GI_OT_GenshinImportOutlineLightmaps
@@ -69,6 +70,7 @@ def setup_dependencies(filepath):
     for class_to_register in [
         GI_OT_GenshinImportMaterials, 
         GI_OT_GenshinImportModel, 
+        GI_OT_GenshinReplaceDefaultMaterials,
         GI_OT_GenshinImportTextures, 
         GI_OT_GenshinImportOutlines, 
         GI_OT_GenshinImportMaterialData, 
@@ -83,15 +85,17 @@ def setup_dependencies(filepath):
 # Need to have run setup_dependencies in order to unregister, otherwise sys.path 
 # will be missing the filepath to the scripts folder
 def unregister():
-    from genshin_import_materials import GI_OT_GenshinImportMaterials
-    from genshin_import_character_model import GI_OT_GenshinImportModel
-    from genshin_import_textures import GI_OT_GenshinImportTextures
-    from genshin_import_outlines import GI_OT_GenshinImportOutlines
-    from genshin_import_outline_lightmaps import GI_OT_GenshinImportOutlineLightmaps
-    from genshin_import_material_data import GI_OT_GenshinImportMaterialData
+    from scripts.setup_wizard.genshin_import_materials import GI_OT_GenshinImportMaterials
+    from scripts.setup_wizard.genshin_import_character_model import GI_OT_GenshinImportModel
+    from scripts.setup_wizard.genshin_replace_default_materials import GI_OT_GenshinReplaceDefaultMaterials
+    from scripts.setup_wizard.genshin_import_textures import GI_OT_GenshinImportTextures
+    from scripts.setup_wizard.genshin_import_outlines import GI_OT_GenshinImportOutlines
+    from scripts.setup_wizard.genshin_import_outline_lightmaps import GI_OT_GenshinImportOutlineLightmaps
+    from scripts.setup_wizard.genshin_import_material_data import GI_OT_GenshinImportMaterialData
 
     bpy.utils.unregister_class(GI_OT_GenshinImportMaterials)
     bpy.utils.unregister_class(GI_OT_GenshinImportModel)
+    bpy.utils.unregister_class(GI_OT_GenshinReplaceDefaultMaterials)
     bpy.utils.unregister_class(GI_OT_GenshinImportTextures)
     bpy.utils.unregister_class(GI_OT_GenshinImportOutlines)
     bpy.utils.unregister_class(GI_OT_GenshinImportOutlineLightmaps)
