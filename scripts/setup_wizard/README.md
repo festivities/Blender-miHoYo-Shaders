@@ -1,6 +1,6 @@
 # Blender miHoYo Shaders - Setup Wizard Tool
 
-(You should view this on Github or some other Markdown reader if you aren't!)
+> (You should view this on Github or some other Markdown reader if you aren't!)
 
 The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate.
 
@@ -31,7 +31,23 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 * The `component_name` should NOT be modified. This is how the Setup Wizard triggers the next component.
 * Metadata is simply there to help provide human readable information and what each component requires
 
+## Steps (Condensed Version)
+> Note: Ideally these steps don't change too much once this releases! Sorry in advance if they do!
+
+0. Setup Wizard
+1. Import Materials
+2. Import Character Model
+3. ~~Join Body Parts to Body~~
+4. Import Character Textures
+5. Import Outlines
+6. Setup Outlines (Geometry Nodes)
+7. Import Lightmaps for Outlines
+8. Import Material Data
+9. Fix Mouth Outlines - **[Disabled by Default]**
+
+
 ## Steps (Detailed Guide)
+> Note: Ideally these steps don't change too much once this releases! Sorry in advance if they do!
 
 0. Setup Wizard
     * This step starts the Setup Wizard process. It also is **very important** for setting up the Python paths so that the scripts can import dependencies and other scripts.
@@ -64,7 +80,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 8. Import Material Data
     * This step imports JSON files containing material data with useful information for shader accuracy, such as specular colors, metalmap scale, metallic colors, outline colors, shininess values, etc.
     * Select the JSON files with the material data (Ctrl + Click or Shift + Click).
-9. Fix Mouth Outlines **[Disabled by Default]**
+9. Fix Mouth Outlines - **[Disabled by Default]**
     * This step "fixes" outlines on the mouth (Face) by assigning a Camera to the geometry node and setting Depth Offset. You will likely need to manually change the Depth Offset depending on your scene.
     * This step may not be needed if you use BetterFBX to import your model (to be confirmed).
 
