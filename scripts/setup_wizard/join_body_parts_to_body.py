@@ -1,9 +1,9 @@
 import bpy
 
 try:
-    import import_order
+    import scripts.setup_wizard.import_order
 except:
-    print("ERROR: Couldn't import invoke_next_step, run the first step in setup_wizard")
+    print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
 
 def join_body_parts_to_body(next_step_idx):
@@ -23,9 +23,10 @@ def join_body_parts_to_body(next_step_idx):
     print(f'Joining children body parts to {character_model_body}')
     bpy.ops.object.join()
 
-    import_order.invoke_next_step(next_step_idx)
+    if next_step_idx:
+        scripts.setup_wizard.import_order.invoke_next_step(next_step_idx)
 
 
 if __name__ == '__main__':
     # If you run this script as a standalone, it will not run other steps (-1 value set below)
-    join_body_parts_to_body(-1)
+    join_body_parts_to_body(None)

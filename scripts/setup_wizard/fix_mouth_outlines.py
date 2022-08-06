@@ -1,9 +1,9 @@
 import bpy
 
 try:
-    import import_order
+    import scripts.setup_wizard.import_order
 except:
-    print("ERROR: Couldn't import invoke_next_step, run the first step in setup_wizard")
+    print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
 CAMERA_INPUT = 'Input_4'
 DEPTH_OFFSET_INPUT = 'Input_8'
@@ -27,7 +27,8 @@ def fix_face_mouth_outlines_protruding_out(next_step_idx):
         set_camera_and_depth_offset(outline_modifiers, camera)
         fix_meshes_by_setting_genshin_materials(face_object.name)
 
-    import_order.invoke_next_step(next_step_idx)
+    if next_step_idx:
+        scripts.setup_wizard.import_order.invoke_next_step(next_step_idx)
 
 
 def set_camera_and_depth_offset(outline_modifiers, camera):
@@ -62,7 +63,7 @@ def fix_meshes_by_setting_genshin_materials(mesh_name):
 
 
 def main():
-    fix_face_mouth_outlines_protruding_out(-1)
+    fix_face_mouth_outlines_protruding_out(None)
 
 
 if __name__ == '__main__':

@@ -4,9 +4,9 @@ import bpy
 import json
 
 try:
-    from join_body_parts_to_body import join_body_parts_to_body
-    from genshin_setup_geometry_nodes import setup_geometry_nodes
-    from fix_mouth_outlines import fix_face_mouth_outlines_protruding_out
+    from scripts.setup_wizard.join_body_parts_to_body import join_body_parts_to_body
+    from scripts.setup_wizard.genshin_setup_geometry_nodes import setup_geometry_nodes
+    from scripts.setup_wizard.fix_mouth_outlines import fix_face_mouth_outlines_protruding_out
 except:
     print('Exception when trying to import required dependency scripts!')
 
@@ -39,7 +39,7 @@ def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_str
     cache = json.load(cache_file)
 
 
-    if current_step_idx <= 0 or current_step_idx > len(config):
+    if current_step_idx <= 0 or current_step_idx + 1 > len(config):  # +1 because we have a step 0
         return
 
     previous_step = config.get(str(current_step_idx - 1))

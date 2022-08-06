@@ -1,21 +1,19 @@
 # Structure for file comes from a script initially written by Zekium from Discord
 # Written by Mken from Discord
 
-from enum import Enum
 import bpy
 
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
 from bpy_extras.io_utils import ImportHelper
-from bpy.props import StringProperty, IntProperty, BoolProperty, EnumProperty
+from bpy.props import StringProperty, IntProperty
 from bpy.types import Operator
 import os
 
-import sys
-if './scripts/streamlined_setup' not in sys.path:
-    sys.path.append('./scripts/streamlined_setup')
-
-from import_order import invoke_next_step
+try:
+    from scripts.setup_wizard.import_order import invoke_next_step
+except Exception:
+    print('Error! Run the first step of setup_wizard! Need to set up python script paths')
 
 
 class GI_OT_GenshinImportMaterials(Operator, ImportHelper):

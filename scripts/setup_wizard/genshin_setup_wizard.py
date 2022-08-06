@@ -32,7 +32,11 @@ class GI_OT_GenshinSetupWizard(Operator, ImportHelper):
 
     def execute(self, context):
         invoke_next_step = setup_dependencies(self.filepath)
-        invoke_next_step(1, path_to_streamlined_setup=os.path.dirname(self.filepath))
+        invoke_next_step(
+            1, 
+            file_path_to_cache = self.filepath, 
+            path_to_streamlined_setup=os.path.join(self.filepath, 'scripts/' 'setup_wizard/')
+        )
 
         return {'FINISHED'}
 
@@ -52,13 +56,13 @@ def setup_dependencies(filepath):
     if filepath not in sys.path:
         sys.path.append(directory)
 
-    from import_order import invoke_next_step
-    from genshin_import_materials import GI_OT_GenshinImportMaterials
-    from genshin_import_character_model import GI_OT_GenshinImportModel
-    from genshin_import_textures import GI_OT_GenshinImportTextures
-    from genshin_import_outlines import GI_OT_GenshinImportOutlines
-    from genshin_import_outline_lightmaps import GI_OT_GenshinImportOutlineLightmaps
-    from genshin_import_material_data import GI_OT_GenshinImportMaterialData
+    from scripts.setup_wizard.import_order import invoke_next_step
+    from scripts.setup_wizard.genshin_import_materials import GI_OT_GenshinImportMaterials
+    from scripts.setup_wizard.genshin_import_character_model import GI_OT_GenshinImportModel
+    from scripts.setup_wizard.genshin_import_textures import GI_OT_GenshinImportTextures
+    from scripts.setup_wizard.genshin_import_outlines import GI_OT_GenshinImportOutlines
+    from scripts.setup_wizard.genshin_import_outline_lightmaps import GI_OT_GenshinImportOutlineLightmaps
+    from scripts.setup_wizard.genshin_import_material_data import GI_OT_GenshinImportMaterialData
 
     # Originally I tried checking, but this way is less bug-prone and is more Pythonic
     # Tried checking for attributes (on bpy.ops.file.xxx), but it seemed to always return true

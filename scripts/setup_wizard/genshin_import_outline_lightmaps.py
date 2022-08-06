@@ -11,12 +11,10 @@ from bpy.props import StringProperty, IntProperty
 from bpy.types import Operator
 import os
 
-# TOOD: Fix imports (requires you to at least do the first step in Import Wizard!)
-import sys
-if './scripts/streamlined_setup' not in sys.path:
-    sys.path.append('./scripts/streamlined_setup')
-
-from import_order import invoke_next_step
+try:
+    from scripts.setup_wizard.import_order import invoke_next_step
+except Exception:
+    print('Error! Run the first step of setup_wizard! Need to set up python script paths')
 
 
 class GI_OT_GenshinImportOutlineLightmaps(Operator, ImportHelper):

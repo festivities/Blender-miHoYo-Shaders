@@ -3,7 +3,7 @@
 import bpy
 
 try:
-    import import_order
+    import scripts.setup_wizard.import_order
 except:
     print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
@@ -57,7 +57,7 @@ def setup_geometry_nodes(next_step_idx):
         fix_meshes_by_setting_genshin_materials(mesh_name)
 
     if next_step_idx:
-        import_order.invoke_next_step(next_step_idx)
+        scripts.setup_wizard.import_order.invoke_next_step(next_step_idx)
 
 
 def create_geometry_nodes_modifier(mesh_name):
