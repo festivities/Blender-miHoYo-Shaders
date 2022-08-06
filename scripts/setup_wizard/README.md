@@ -2,7 +2,7 @@
 
 > (You should view this on Github or some other Markdown reader if you aren't!)
 
-The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate.
+The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate, this tool has got it all!
 
 ## Important Note
 This tool is broken up into many different components. The `config.json` file can be used to enable or disable steps depending on your workflow.
