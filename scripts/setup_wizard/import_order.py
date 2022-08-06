@@ -10,28 +10,30 @@ try:
 except:
     print('Exception when trying to import required dependency scripts!')
 
-FESTIVITY_ROOT_FOLDER_FILE_PATH = 'festivity_root_folder_file_path'
-CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
+# Config Constants
 COMPONENT_NAME = 'component_name'
-BL_IDNAME_FUNCTION = 'function_to_call'
 ENABLED = 'enabled'
 CACHE_KEY = 'cache_key'
 
-module_path_to_streamlined_setup = ''
+# Cache Constants
+FESTIVITY_ROOT_FOLDER_FILE_PATH = 'festivity_root_folder_file_path'
+CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
+
+path_to_setup_wizard_folder = ''
 
 
 def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_streamlined_setup=''):
     if path_to_streamlined_setup:
-        global module_path_to_streamlined_setup
-        module_path_to_streamlined_setup = path_to_streamlined_setup
+        global path_to_setup_wizard_folder
+        path_to_setup_wizard_folder = path_to_streamlined_setup
 
     # We use a config.json so that we can make changes without having to restart Blender
     # TODO: Make this a class that gets instantiated in each component? 
     # TOOD: Making a class may allow us to move config.json data back into this module?
-    file = open(f'{module_path_to_streamlined_setup}/config.json')
+    file = open(f'{path_to_setup_wizard_folder}/config.json')
     config = json.load(file)
 
-    cache_file_path = f'{module_path_to_streamlined_setup}/cache.json.tmp'
+    cache_file_path = f'{path_to_setup_wizard_folder}/cache.json.tmp'
     if current_step_idx == 1:
         with open(cache_file_path, 'w') as f:
             json.dump({}, f)
