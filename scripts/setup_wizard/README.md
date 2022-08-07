@@ -117,15 +117,15 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 
 ## Development Roadmap / Future Features
 ### Features
-- [] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
+- [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
-- [] BetterFBX Support/Fix UV map imports (only one UV map is imported)
+- [ ] BetterFBX Support/Fix UV map imports (only one UV map is imported)
 ### Refactoring
-- [] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
-- [] Refactor Import Outline Lightmaps component
-- [] Refactor config.json from a dictionary to a List of dictionaries?
+- [ ] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
+- [ ] Refactor Import Outline Lightmaps component
+- [ ] Refactor config.json from a dictionary to a List of dictionaries?
 ### Misc.
-- [] Design diagram depicting how this tool and the components interact and work
+- [ ] Design diagram depicting how this tool and the components interact and work
 
 #
 Cheers and Happy Blending,
