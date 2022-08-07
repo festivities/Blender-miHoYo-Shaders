@@ -1,3 +1,5 @@
+# Written by Mken from Discord
+
 import bpy
 
 try:

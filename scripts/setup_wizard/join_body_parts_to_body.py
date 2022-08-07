@@ -1,3 +1,6 @@
+# Written by Mken from Discord
+# This script is deprecated...Just use Ctrl+J to join your parts if you need to :)
+
 import bpy
 
 try:
