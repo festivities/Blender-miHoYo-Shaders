@@ -4,9 +4,16 @@ import bpy
 import json
 
 try:
-    from scripts.setup_wizard.join_body_parts_to_body import join_body_parts_to_body
-    from scripts.setup_wizard.genshin_setup_geometry_nodes import setup_geometry_nodes
-    from scripts.setup_wizard.fix_mouth_outlines import fix_face_mouth_outlines_protruding_out
+    # Really ugly in my opinion, but this let's us reload modules when we make changes to them without
+    # having to restart Blender.
+    import importlib
+    import scripts.setup_wizard.join_body_parts_to_body
+    import scripts.setup_wizard.genshin_setup_geometry_nodes
+    import scripts.setup_wizard.fix_mouth_outlines
+
+    importlib.reload(scripts.setup_wizard.join_body_parts_to_body)
+    importlib.reload(scripts.setup_wizard.genshin_setup_geometry_nodes)
+    importlib.reload(scripts.setup_wizard.fix_mouth_outlines)
 except:
     print('Exception when trying to import required dependency scripts!')
 
@@ -82,7 +89,7 @@ class ComponentFunctionFactory:
         if component_name == 'import_materials':
             return bpy.ops.file.genshin_import_materials
         elif component_name == 'join_body_parts_to_body':
-            return join_body_parts_to_body
+            return scripts.setup_wizard.join_body_parts_to_body.join_body_parts_to_body
         elif component_name == 'import_character_model':
             return bpy.ops.file.genshin_import_model
         elif component_name == 'replace_default_materials':
@@ -92,12 +99,12 @@ class ComponentFunctionFactory:
         elif component_name == 'import_outlines':
             return bpy.ops.file.genshin_import_outlines
         elif component_name == 'setup_geometry_nodes':
-            return setup_geometry_nodes
+            return scripts.setup_wizard.genshin_setup_geometry_nodes.setup_geometry_nodes
         elif component_name == 'import_outline_lightmaps':
             return bpy.ops.file.genshin_import_outline_lightmaps
         elif component_name == 'import_material_data':
             return bpy.ops.file.genshin_import_material_data
         elif component_name == 'fix_mouth_outlines':
-            return fix_face_mouth_outlines_protruding_out
+            return scripts.setup_wizard.fix_mouth_outlines.fix_face_mouth_outlines_protruding_out
         else:
             raise Exception(f'Unknown component name passed into {__name__}: {component_name}')
