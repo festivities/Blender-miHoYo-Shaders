@@ -139,7 +139,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     pass
             break  # IMPORTANT: We os.walk which also traverses through folders...we just want the files
 
-        print('Imported textures...')
+        print('\nImported textures...\n')
         invoke_next_step(self.next_step_idx, directory)
         return {'FINISHED'}
     
@@ -155,7 +155,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
         else:
             # If not found it mapping, default Dress to Body (if current texture_name has Body in it)
             dress = bpy.data.materials.get('miHoYo - Genshin Dress')
-            if dress:
+            print(f'Body in texture_name? {"Body" in texture_name}')
+            if dress and 'Body' in texture_name:
                 dress_shader_nodes = dress.node_tree.nodes
                 dress_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
                 dress_shader_nodes.get(f'{texture_name}_UV1').image = texture_img
