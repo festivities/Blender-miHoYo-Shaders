@@ -10,10 +10,12 @@ try:
     import scripts.setup_wizard.join_body_parts_to_body
     import scripts.setup_wizard.genshin_setup_geometry_nodes
     import scripts.setup_wizard.fix_mouth_outlines
+    import scripts.setup_wizard.delete_empties
 
     importlib.reload(scripts.setup_wizard.join_body_parts_to_body)
     importlib.reload(scripts.setup_wizard.genshin_setup_geometry_nodes)
     importlib.reload(scripts.setup_wizard.fix_mouth_outlines)
+    importlib.reload(scripts.setup_wizard.delete_empties)
 except:
     print('Exception when trying to import required dependency scripts!')
 
@@ -106,5 +108,7 @@ class ComponentFunctionFactory:
             return bpy.ops.file.genshin_import_material_data
         elif component_name == 'fix_mouth_outlines':
             return scripts.setup_wizard.fix_mouth_outlines.fix_face_mouth_outlines_protruding_out
+        elif component_name == 'delete_empties':
+            return scripts.setup_wizard.delete_empties.delete_empties
         else:
             raise Exception(f'Unknown component name passed into {__name__}: {component_name}')
