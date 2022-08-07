@@ -5,7 +5,7 @@ import json
 
 try:
     # Really ugly in my opinion, but this let's us reload modules when we make changes to them without
-    # having to restart Blender.
+    # having to restart Blender (not quite sure if this works yet in this module!!)
     import importlib
     import scripts.setup_wizard.join_body_parts_to_body
     import scripts.setup_wizard.genshin_setup_geometry_nodes
