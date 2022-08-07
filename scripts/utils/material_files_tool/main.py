@@ -68,9 +68,13 @@ def main():
                     raise
                 pass
 
-            with open(f'{character_output_directory}/Material/{file_name}.json', 'wb') as f:
-                print(f'Writing ".../output/{character_folder}/Material/{file_name}.json"')
-                f.write(json_data)
+            try:
+                with open(f'{character_output_directory}/Material/{file_name}.json', 'wb') as f:
+                    print(f'Writing ".../output/{character_folder}/Material/{file_name}.json"')
+                    f.write(json_data)
+            except FileNotFoundError:
+                print(f'>>> ERROR: FILE NOT FOUND: {character_output_directory}/Material/{file_name}.json')
+                print('Likely do to the bytes in dat_file being bad/unexpected')
     
     print('Done converting .dat to json files')
     jsonify_lists.jsonify_saved_properties_field()  # Part 2, turn lists into dicts
