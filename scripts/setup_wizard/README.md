@@ -1,10 +1,28 @@
-# Blender miHoYo Shaders - Setup Wizard Tool
+# miHoYo Shaders - Setup Wizard Tool
 
-> (You should view this on Github or some other Markdown reader if you aren't!)
+> You should view this on Github or some other Markdown reader if you aren't!
 
-The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate, this tool has got it all!
+The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate, this tool has got it all! Your one-stop-shop for setting up your characters in Blender!
 
-## Important Note
+## Quick Start Guide
+1. Open Blender
+2. Switch to Scripting
+3. Open `genshin_setup_wizard.py`
+4. Run the script
+5. Hit F3 and type `Genshin`
+6. Select the option saying `file.genshin_setup_wizard > 0_Genshin: Setup Wizard - Select Festivity's Shader Folder`
+7. Select the root/base folder with Festivity's Shaders
+    * Double click to navigate inside the folder to select it, no need to select a specific file inside!
+8. Select the root/base folder with Festivity's Shaders (yes, again!)
+9. Select the folder with the character model and textures (lightmaps, diffuses, etc.)
+10. Select the `miHoYo - Outlines.blend` located in the `experimental-blender-3.3` folder
+11. Select the material data JSON files for the outlines
+    * Shift+Click or Ctrl+Click the JSON files that you want to use (normally all of them)
+
+> **Do you use BetterFBX? Don't want to use FBX's standard import?** <br>
+> No problem! Read the section just below on how to disable the Import Character Model component.
+
+## How to Disable Components - Important!
 This tool is broken up into many different components. The `config.json` file can be used to enable or disable steps depending on your workflow.
 
 Example:
@@ -24,58 +42,68 @@ You can disable any step (component) in the Setup Wizard by changing `"enabled":
 * This may be handy in the scenario that you use BetterFBX and do not want to use Blender's vanilla FBX importer.
 
 You can disable the cache for any step by changing `"cache_key": "<whatever value is here>",` to `"cache_key": "",`
-* The cache (`cache.json.tmp`) is used to "save" your previous choice for a future step. It gets overwritten each time you run the Setup Wizard and is purely a temporary file.
+* The cache (`cache.json.tmp`) is used to "save" your previous choice for a future step that uses the same folder (ex. character model, textures and outline lightmaps). It gets overwritten each time you run the Setup Wizard and is purely a temporary file.
 
 
 ### Other Notes:
-* The `component_name` should NOT be modified. This is how the Setup Wizard triggers the next component.
-* Metadata is simply there to help provide human readable information and what each component requires
+* The `component_name` should NOT be modified. This is how the Setup Wizard identifies and triggers the next component.
+* Metadata is simply there to help provide human readable information and what each component requires (what should be selected on the file explorer window).
 
-## Steps (Condensed Version)
-> Note: Ideally these steps don't change too much once this releases! Sorry in advance if they do!
+## Features/Components
+
+> Note: Ideally these steps won't change too much once this releases! Sorry in advance if they do!
 
 0. Setup Wizard
 1. Import Materials
 2. Import Character Model
-3. ~~Join Body Parts to Body~~
+3. Replace/Re-Assign Default Character Model Materials (and rename)
 4. Import Character Textures
-5. Import Outlines
+5. Import `miHoYo - Outlines`
 6. Setup Outlines (Geometry Nodes)
 7. Import Lightmaps for Outlines
 8. Import Material Data
 9. Fix Mouth Outlines - **[Disabled by Default]**
+10. Delete Empties
 
 
 ## Steps (Detailed Guide)
-> Note: Ideally these steps don't change too much once this releases! Sorry in advance if they do!
+
+> Note: Ideally these steps won't change too much once this releases! Sorry in advance if they do!
 
 0. Setup Wizard
     * This step starts the Setup Wizard process. It also is **very important** for setting up the Python paths so that the scripts can import dependencies and other scripts.
-    * If you are running into an error about `invoke_next_step`, this is likely your issue. You only need to run the very first of the Setup Wizard and then you can close out of the File Explorer window.
-    * Select the root folder that contains Festivity's Shaders.
+    * If you are running into an error about `invoke_next_step`, this is likely your issue. You only need to run this step for the Setup Wizard and then you can close out of the File Explorer window.
+    * Select the root folder that contains Festivity's Shaders
+        * Cache not enabled in this step in case you run it only to set up your `sys.path`/Python path)
 1. Import Materials
     * This step imports `miHoYo - Genshin Hair`, `miHoYo - Genshin Face`, `miHoYo - Genshin Body` and `miHoYo - Genshin Outlines`.
     * Select the root folder that contains Festivity's Shaders.
 2. Import Character Model
     * This step imports the character model which should be a .fbx file
     * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.**
-3. ~~Join Body Parts to Body~~ **Deprecated. Unsupported.** Just manually Ctrl+J it yourself.
-    * Placeholder: Naming Convention of Genshin Materials: `miHoYo - Genshin {Body Part}` where `{Body Part}` is `Hair`, `Body`, `Dress`, `Dress1`, `Dress2`, etc.
-    * Yes, this tool also handle special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
+3. Replace Default Character Model Materials (and rename)
+    * This step replaces/re-assigns the default character model materials to the shader's materials.
+    * Naming Convention of Genshin Materials (and their Shader nodes): `miHoYo - Genshin {Body Part}` 
+        * `{Body Part}` can be `Hair`, `Body`, `Dress`, `Dress1`, `Dress2`, etc.
+    * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
+    * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.** (Needed purely to get the character name)
 4. Import Character Textures
     * This step imports the character textures and assigns them to the materials imported in Step 1.
-    * Yes, this tool also handle special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
+    * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
     * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step 2 (unless you've disabled it).
-5. Import Outlines
+5. Import `miHoYo - Outlines`
     * This step imports the `miHoYo - Outlines` node group, which is found in the `experimental-blender-3.3` folder.
     * Select the `miHoYo - Outlines.blend` file.
 6. Setup Outlines (Geometry Nodes)
     * This step creates and sets up the Outlines (Geometry Nodes modifier)
     * Naming Convention of Geometry Nodes: `GeometryNodes {Mesh Name}`
+        * {Mesh Name} can be `Body`, `Face`, `Face_Eye`, `Brow` (`Face_Eye` and `Brow` don't really get used though and `Face_Eye` has Outline Thickness set to 0.0 by default)
+    * Naming Convention of Outline Materials: `miHoYo - Genshin {Body Part} Outlines`
+        * `{Body Part}` can be `Hair`, `Body`, `Dress`, `Dress1`, `Dress2`, etc.
     * No selection needed.
 7. Import Lightmaps for Outlines
     * This step imports Lightmap textures and assigns them to to materials.
-    * Yes, this tool also handle special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
+    * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
     * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step 2 or Step 4 (unless you've disabled them).
 8. Import Material Data
     * This step imports JSON files containing material data with useful information for shader accuracy, such as specular colors, metalmap scale, metallic colors, outline colors, shininess values, etc.
@@ -83,6 +111,23 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 9. Fix Mouth Outlines - **[Disabled by Default]**
     * This step "fixes" outlines on the mouth (Face) by assigning a Camera to the geometry node and setting Depth Offset. You will likely need to manually change the Depth Offset depending on your scene.
     * This step may not be needed if you use BetterFBX to import your model (to be confirmed).
+10. Delete Empties
+    * This step deletes Empty type objects in the scene
+    * No selection needed.
 
+## Development Roadmap / Future Features
+### Features
+- [] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
+    - Requires knowing all characters who have a different the Body Ramp Type than the default
+- [] BetterFBX Support/Fix UV map imports (only one UV map is imported)
+### Refactoring
+- [] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
+- [] Refactor Import Outline Lightmaps component
+- [] Refactor config.json from a dictionary to a List of dictionaries?
+### Misc.
+- [] Design diagram depicting how this tool and the components interact and work
+
+#
+Cheers and Happy Blending,
 
 ~Mken
