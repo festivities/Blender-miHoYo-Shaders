@@ -47,6 +47,11 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         print(character_model_folder_file_path)
         self.__import_character_model(character_model_folder_file_path)
 
+        # Quick-fix, just want to shove this in here for now...
+        for object in bpy.data.objects:
+            if object.name == 'EffectMesh' or object.name == 'EyeStar':
+                bpy.data.objects[object.name].hide_set(True)
+
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}
 
