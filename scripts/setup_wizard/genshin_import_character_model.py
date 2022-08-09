@@ -44,7 +44,6 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
     def execute(self, context):
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
 
-        print(character_model_folder_file_path)
         self.__import_character_model(character_model_folder_file_path)
 
         # Quick-fix, just want to shove this in here for now...

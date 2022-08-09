@@ -78,24 +78,12 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
         '_FaceBlushColor': 'Blush Color',
     }
 
-    unsupported_body_parts = []
-
-    # collei has dress on hair
-    # ganyu has dress on body
-    # yelan has dress1 on body and dress2 on hair
-
-    # backwards compatibility for those who do not merge all objects to Body
-
     def execute(self, context):
         material_data_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
         directory_file_path = os.path.dirname(self.filepath)
 
         for file in self.files:
             body_part = PurePosixPath(file.name).stem.split('_')[-1]
-
-            if body_part in self.unsupported_body_parts:
-                print(f'You imported a body part file: {file.name}, which was not expected in unsupported_body_parts: {self.unsupported_body_parts}')
-                continue
 
             node_tree_group001_inputs = bpy.data.materials[f'miHoYo - Genshin {body_part}'].node_tree.nodes["Group.001"].inputs
             global_material_properties_node_inputs = bpy.data.node_groups["GLOBAL MATERIAL PROPERTIES"].nodes["Group Output"].inputs

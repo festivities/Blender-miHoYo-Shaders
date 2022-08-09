@@ -49,7 +49,6 @@ def register():
 # We ask for the filepath to Festivity's shaders that way we can set up the scripts in the path
 def setup_dependencies(filepath):
     directory = os.path.dirname(filepath)
-    print(f'Setting up sys.path with {directory}')
 
     import sys
     if filepath not in sys.path:

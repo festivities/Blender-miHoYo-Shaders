@@ -78,18 +78,14 @@ class GI_OT_GenshinImportOutlineLightmaps(Operator, ImportHelper):
             for outline_material in outline_materials:
                 original_material_name = outline_material.name.strip(' Outlines')
                 material_part_name = character_material_mapping.get(original_material_name) if character_material_mapping else ''
-                # print(f'original: {original_material_name}')
-                # print(f'material: {material_part_name}')
                 material_part_name_lightmap = material_part_name
+
                 if not material_part_name:
                     material_part_name = outline_material.name.split(' ')[-2]
                     material_part_name_lightmap = 'Body' if material_part_name == 'Dress' else \
                         material_part_name
 
                 if material_part_name != 'Face':
-                    print(material_part_name_lightmap)
-                    print(lightmap_files)
-
                     file = [file for file in lightmap_files if material_part_name_lightmap in file][0]
 
                     img_path = character_model_folder_file_path + "/" + file

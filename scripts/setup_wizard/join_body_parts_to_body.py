@@ -20,10 +20,8 @@ def join_body_parts_to_body(next_step_idx):
     character_model_children = [body_part for body_part in character_model.children if body_part]
     
     for character_model_child in character_model_children:
-        print(f'Selecting {character_model_child} to join')
         character_model_child.select_set(True)
     bpy.context.view_layer.objects.active = character_model_body
-    print(f'Joining children body parts to {character_model_body}')
     bpy.ops.object.join()
 
     if next_step_idx:

@@ -82,14 +82,12 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                 material_name = material_slot.name
                 mesh_body_part_name = material_name.split('_')[-1]
                 genshin_material = bpy.data.materials.get(f'miHoYo - Genshin {mesh_body_part_name}')
-                print(genshin_material)
 
                 if genshin_material:            
                     material_slot.material = genshin_material
                 elif 'Dress' in mesh_body_part_name:
                     print('Dress detected on character model!')
                     material_mapping = material_assignment_mapping.get(character_name)
-                    print(material_mapping)
 
                     if material_mapping:
                         body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')

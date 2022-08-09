@@ -59,9 +59,6 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
 
     def execute(self, context):
         directory = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
-
-        print(self.file_directory)
-        print(self.filepath)
         
         for name, folder, files in os.walk(directory):
             character_name = ''
@@ -80,8 +77,6 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                 # declare body and face mesh variables
                 body_mesh = bpy.context.scene.objects.get("Body")
                 face_mesh = bpy.context.scene.objects.get("Face")
-
-                print(file)
                 
                 # Implement the texture in the correct node
                 if "Hair_Diffuse" in file :
@@ -155,7 +150,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
         else:
             # If not found it mapping, default Dress to Body (if current texture_name has Body in it)
             dress = bpy.data.materials.get('miHoYo - Genshin Dress')
-            print(f'Body in texture_name? {"Body" in texture_name}')
+
             if dress and 'Body' in texture_name:
                 dress_shader_nodes = dress.node_tree.nodes
                 dress_shader_nodes.get(f'{texture_name}_UV0').image = texture_img
