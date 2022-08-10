@@ -12,7 +12,7 @@ import os
 class GI_OT_GenshinSetupWizard(Operator, ImportHelper):
     """Setup Wizard Process"""
     bl_idname = "file.genshin_setup_wizard"
-    bl_label = "0_Genshin: Setup Wizard -  Select Festivity's Shaders Folder"
+    bl_label = "Genshin: Setup Wizard - Select Festivity's Shaders Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

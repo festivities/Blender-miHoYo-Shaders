@@ -21,7 +21,7 @@ except Exception:
 class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
     """Select Material Json Data Files"""
     bl_idname = "file.genshin_import_material_data"  # important since its how we chain file dialogs
-    bl_label = "8_Genshin: Select Material Json Data Files"
+    bl_label = "Genshin: Select Material Json Data Files"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"

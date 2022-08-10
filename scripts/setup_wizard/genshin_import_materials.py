@@ -19,7 +19,7 @@ except Exception:
 class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
     """Select Festivity's Shaders folder to import materials"""
     bl_idname = "file.genshin_import_materials"  # important since its how we chain file dialogs
-    bl_label = "1_Genshin: Select Festivity Folder"
+    bl_label = "Genshin: Import Materials - Select Festivity's Shaders Folder"
 
     # ImportHelper mixin class uses this
     filename_ext = "*.*"
