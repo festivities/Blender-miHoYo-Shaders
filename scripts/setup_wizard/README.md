@@ -27,7 +27,7 @@ This tool is broken up into many different components. The `config.json` file ca
 
 Example:
 ```
-    "2": {
+    "1": {
         "component_name": "import_character_model",
         "enabled": true,
         "cache_key": "character_model_folder_file_path",
@@ -54,16 +54,17 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 > Note: Ideally these steps won't change too much once this releases! Sorry in advance if they do!
 
 0. Setup Wizard
-1. Import Materials
-2. Import Character Model
-3. Replace/Re-Assign Default Character Model Materials (and rename)
-4. Import Character Textures
-5. Import `miHoYo - Outlines`
-6. Setup Outlines (Geometry Nodes)
-7. Import Lightmaps for Outlines
-8. Import Material Data
-9. Fix Mouth Outlines - **[Disabled by Default]**
-10. Delete Empties
+1. Import Character Model
+2. Delete Empties
+3. Import Materials
+4. Replace/Re-Assign Default Character Model Materials (and rename)
+5. Import Character Textures
+6. Import `miHoYo - Outlines`
+7. Setup Outlines (Geometry Nodes)
+8. Import Lightmaps for Outlines
+9. Import Material Data
+10. Fix Mouth Outlines - **[Disabled by Default]**
+11. Delete Speciifc Objects
 
 
 ## Steps (Detailed Guide)
@@ -75,44 +76,47 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
     * If you are running into an error about `invoke_next_step`, this is likely your issue. You only need to run this step for the Setup Wizard and then you can close out of the File Explorer window.
     * Select the root folder that contains Festivity's Shaders
         * Cache not enabled in this step in case you run it only to set up your `sys.path`/Python path)
-1. Import Materials
-    * This step imports `miHoYo - Genshin Hair`, `miHoYo - Genshin Face`, `miHoYo - Genshin Body` and `miHoYo - Genshin Outlines`.
-    * Select the root folder that contains Festivity's Shaders.
-2. Import Character Model
+1. Import Character Model
     * This step imports the character model which should be a .fbx file
     * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.**
-3. Replace Default Character Model Materials (and rename)
+2. Delete Empties
+    * This step deletes Empty type objects in the scene
+    * No selection needed.
+3. Import Materials
+    * This step imports `miHoYo - Genshin Hair`, `miHoYo - Genshin Face`, `miHoYo - Genshin Body` and `miHoYo - Genshin Outlines`.
+    * Select the root folder that contains Festivity's Shaders.
+4. Replace Default Character Model Materials (and rename)
     * This step replaces/re-assigns the default character model materials to the shader's materials.
     * Naming Convention of Genshin Materials (and their Shader nodes): `miHoYo - Genshin {Body Part}` 
         * `{Body Part}` can be `Hair`, `Body`, `Dress`, `Dress1`, `Dress2`, etc.
     * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
     * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.** (Needed purely to get the character name)
-4. Import Character Textures
-    * This step imports the character textures and assigns them to the materials imported in Step 1.
+5. Import Character Textures
+    * This step imports the character textures and assigns them to the materials imported in Step `Import Materials`.
     * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
-    * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step 2 (unless you've disabled it).
-5. Import `miHoYo - Outlines`
+    * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step `Import Character Model` (unless you've disabled it).
+6. Import `miHoYo - Outlines`
     * This step imports the `miHoYo - Outlines` node group, which is found in the `experimental-blender-3.3` folder.
     * Select the `miHoYo - Outlines.blend` file.
-6. Setup Outlines (Geometry Nodes)
+7. Setup Outlines (Geometry Nodes)
     * This step creates and sets up the Outlines (Geometry Nodes modifier)
     * Naming Convention of Geometry Nodes: `GeometryNodes {Mesh Name}`
         * {Mesh Name} can be `Body`, `Face`, `Face_Eye`, `Brow` (`Face_Eye` and `Brow` don't really get used though and `Face_Eye` has Outline Thickness set to 0.0 by default)
     * Naming Convention of Outline Materials: `miHoYo - Genshin {Body Part} Outlines`
         * `{Body Part}` can be `Hair`, `Body`, `Dress`, `Dress1`, `Dress2`, etc.
     * No selection needed.
-7. Import Lightmaps for Outlines
+8. Import Lightmaps for Outlines
     * This step imports Lightmap textures and assigns them to to materials.
     * Yes, this tool also handles special exceptions for characters like: `Yelan`, `Collei` and `Rosaria` who may have their `Dress` set to `Hair` instead of the usual `Body`.
-    * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step 2 or Step 4 (unless you've disabled them).
-8. Import Material Data
+    * **This step uses the cache** so you do not need to select a folder. It uses what was selected in Step `Import Character Model` or Step `Import Character Textures` (unless you've disabled them).
+9. Import Material Data
     * This step imports JSON files containing material data with useful information for shader accuracy, such as specular colors, metalmap scale, metallic colors, outline colors, shininess values, etc.
     * Select the JSON files with the material data (Ctrl + Click or Shift + Click).
-9. Fix Mouth Outlines - **[Disabled by Default]**
+10. Fix Mouth Outlines - **[Disabled by Default]**
     * This step "fixes" outlines on the mouth (Face) by assigning a Camera to the geometry node and setting Depth Offset. You will likely need to manually change the Depth Offset depending on your scene.
     * This step may not be needed if you use BetterFBX to import your model (to be confirmed).
-10. Delete Empties
-    * This step deletes Empty type objects in the scene
+11. Delete Specific Objects
+    * This step deletes specific object(s) which is only EffectMesh at this time.
     * No selection needed.
 
 ## Development Roadmap / Future Features
