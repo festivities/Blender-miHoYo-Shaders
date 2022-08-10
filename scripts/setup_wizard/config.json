@@ -10,15 +10,6 @@
         }
     },
     "1": {
-        "component_name": "import_materials",
-        "enabled": true,
-        "cache_key": "festivity_root_folder_file_path",
-        "metadata": {
-            "description": "Import Genshin Materials (Hair, Face, Body, Outline)",
-            "requires": "Folder of Festivity's project"
-        }
-    },
-    "2": {
         "component_name": "import_character_model",
         "enabled": true,
         "cache_key": "character_model_folder_file_path",
@@ -27,7 +18,25 @@
             "requires": "Folder with character model fbx file in it"
         }
     },
+    "2": {
+        "component_name": "delete_empties",
+        "enabled": true,
+        "cache_key": "",
+        "metadata": {
+            "description": "Delete empties",
+            "requires": "None"
+        }
+    },
     "3": {
+        "component_name": "import_materials",
+        "enabled": true,
+        "cache_key": "festivity_root_folder_file_path",
+        "metadata": {
+            "description": "Import Genshin Materials (Hair, Face, Body, Outline)",
+            "requires": "Folder of Festivity's project"
+        }
+    },
+    "4": {
         "component_name": "replace_default_materials",
         "enabled": true,
         "cache_key": "character_model_folder_file_path",
@@ -36,7 +45,7 @@
             "requires": "Folder with character model fbx file in it"
         }
     },
-    "4": {
+    "5": {
         "component_name": "import_character_textures",
         "enabled": true,
         "cache_key": "character_model_folder_file_path",
@@ -45,7 +54,7 @@
             "requires": "Folder with character textures (lightmaps, difuses, etc.) in it"
         }
     },
-    "5": {
+    "6": {
         "component_name": "import_outlines",
         "enabled": true,
         "cache_key": "",
@@ -54,7 +63,7 @@
             "requires": "File named 'miHoYo - Outlines'"
         }
     },
-    "6": {
+    "7": {
         "component_name": "setup_geometry_nodes",
         "enabled": true,
         "cache_key": "",
@@ -63,7 +72,7 @@
             "requires": "None"
         }
     },
-    "7": {
+    "8": {
         "component_name": "import_outline_lightmaps",
         "enabled": true,
         "cache_key": "character_model_folder_file_path",
@@ -72,7 +81,7 @@
             "requires": "Folder with lightmap files in it"
         }
     },
-    "8": {
+    "9": {
         "component_name": "import_material_data",
         "enabled": true,
         "cache_key": "",
@@ -81,21 +90,12 @@
             "requires": "Select all files (shift + click) of a character's material json"
         }
     },
-    "9": {
+    "10": {
         "component_name": "fix_mouth_outlines",
         "enabled": false,
         "cache_key": "",
         "metadata": {
             "description": "Fixes mouth outlines -- assigns 'Camera' to Face outlines and applies a Depth Offset",
-            "requires": "None"
-        }
-    },
-    "10": {
-        "component_name": "delete_empties",
-        "enabled": true,
-        "cache_key": "",
-        "metadata": {
-            "description": "Delete empties",
             "requires": "None"
         }
     }

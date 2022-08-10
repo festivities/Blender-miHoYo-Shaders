@@ -1,4 +1,5 @@
 # Written by Mken from Discord
+# This script should specifically be placed AFTER importing the character model and BEFORE importing Genshin materials
 
 import bpy
 
@@ -7,21 +8,12 @@ try:
 except:
     print("ERROR: Couldn't import invoke_next_step, but it's not needed if running this as a standalone")
 
-do_not_delete_object_list = [
-    'Camera',
-    'Face Light Direction',
-    'Head Driver',
-    'Hemi',
-    'Light',
-    'Main Light Direction'
-]
-
 
 def delete_empties(next_step_idx):
     scene = bpy.context.scene
 
     for object in scene.objects:
-        if object.type == 'EMPTY' and object.name not in do_not_delete_object_list:
+        if object.type == 'EMPTY':
             bpy.data.objects.remove(object)
 
     if next_step_idx:
