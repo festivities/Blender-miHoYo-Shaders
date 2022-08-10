@@ -98,5 +98,14 @@
             "description": "Fixes mouth outlines -- assigns 'Camera' to Face outlines and applies a Depth Offset",
             "requires": "None"
         }
+    },
+    "11": {
+        "component_name": "delete_specific_objects",
+        "enabled": true,
+        "cache_key": "",
+        "metadata": {
+            "description": "Delete objects in the objects_to_delete list",
+            "requires": "None"
+        }
     }
 }
