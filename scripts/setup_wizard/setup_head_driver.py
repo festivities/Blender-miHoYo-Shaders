@@ -16,7 +16,7 @@ def setup_head_driver(next_step_index):
 
     armature = [object for object in bpy.data.objects if object.type == 'ARMATURE'][0]  # expecting 1 armature
     armature_bones = armature.data.bones
-    head_bone_name = [bone_name for bone_name  in armature_bones.keys() if 'Head' in bone_name][0] # expecting 1 bone with Head in the name
+    head_bone_name = [bone_name for bone_name in armature_bones.keys() if 'Head' in bone_name][0]  # expecting 1 bone with Head in the name
 
     set_contraint_target_and_bone(child_of_constraint, armature, head_bone_name)
     set_inverse(head_driver_object)
