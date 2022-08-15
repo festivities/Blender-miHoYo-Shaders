@@ -107,5 +107,14 @@
             "description": "Delete objects in the objects_to_delete list",
             "requires": "None"
         }
+    },
+    "12": {
+        "component_name": "setup_head_driver",
+        "enabled": true,
+        "cache_key": "",
+        "metadata": {
+            "description": "Sets up Head Driver constraint for face shadows",
+            "requires": "None"
+        }
     }
 }

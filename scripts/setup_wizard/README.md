@@ -65,6 +65,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 9. Import Material Data
 10. Fix Mouth Outlines - **[Disabled by Default]**
 11. Delete Speciifc Objects
+12. Setup Head Driver
 
 
 ## Steps (Detailed Guide)
@@ -118,9 +119,15 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 11. Delete Specific Objects
     * This step deletes specific object(s) which is only EffectMesh at this time.
     * No selection needed.
+12. Setup Head Driver
+    * This step will setup the Head Driver constraint so that face shadows work
+    * No selection needed.
 
 ## Development Roadmap / Future Features
 ### Features
+- [x] Head Driver Setup
+- [ ] Make model upright if not upright (?)
+- [ ] Scale up x100
 - [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
 - [ ] BetterFBX Support/Fix UV map imports (only one UV map is imported)
