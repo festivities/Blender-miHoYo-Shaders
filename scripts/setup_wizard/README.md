@@ -146,6 +146,11 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 - [ ] Design diagram depicting how this tool and the components interact and work
 
 #
+
+Thanks to all those who helped answer the questions I had while building out this tool and learning about Blender.
+<br>
+Shoutout to @Festivity, @TheyCallMeSpy, @Sultana and @M4urlcl0!
+
 Cheers and Happy Blending,
 
 ~Mken
