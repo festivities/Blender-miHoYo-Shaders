@@ -1,5 +1,7 @@
 # Structure for file comes from a script initially written by Zekium from Discord
 # Written by Mken from Discord
+# Kudos to M4urlcl0 for bringing up adding the UV map (UV1) and 
+# the armature bone settings when importing the FBX model
 
 import bpy
 import pathlib
