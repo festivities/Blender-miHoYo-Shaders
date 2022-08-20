@@ -78,7 +78,10 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
     * Select the root folder that contains Festivity's Shaders
         * Cache not enabled in this step in case you run it only to set up your `sys.path`/Python path)
 1. Import Character Model
-    * This step imports the character model which should be a .fbx file
+    * This step will: 
+        * Import the character model which should be a .fbx file
+        * Hide EffectMesh (gets deleted in a later step) and EyeStar
+        * Add 'UV1' UV Map to ALL meshes (I think the important one is just Body though?)
     * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.**
 2. Delete Empties
     * This step deletes Empty type objects in the scene
