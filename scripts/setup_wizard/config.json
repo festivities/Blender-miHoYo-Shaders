@@ -109,6 +109,15 @@
         }
     },
     "12": {
+        "component_name": "make_character_upright",
+        "enabled": true,
+        "cache_key": "",
+        "metadata": {
+            "description": "Sets character armature to 90 degrees on x-axis (upright)",
+            "requires": "None (do this BEFORE setup_head_driver)"
+        }
+    },
+    "13": {
         "component_name": "setup_head_driver",
         "enabled": true,
         "cache_key": "",

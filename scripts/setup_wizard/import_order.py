@@ -12,6 +12,7 @@ try:
     import scripts.setup_wizard.fix_mouth_outlines
     import scripts.setup_wizard.delete_empties
     import scripts.setup_wizard.delete_specific_objects
+    import scripts.setup_wizard.make_character_upright
     import scripts.setup_wizard.setup_head_driver
 
     importlib.reload(scripts.setup_wizard.join_body_parts_to_body)
@@ -19,6 +20,7 @@ try:
     importlib.reload(scripts.setup_wizard.fix_mouth_outlines)
     importlib.reload(scripts.setup_wizard.delete_empties)
     importlib.reload(scripts.setup_wizard.delete_specific_objects)
+    importlib.reload(scripts.setup_wizard.make_character_upright)
     importlib.reload(scripts.setup_wizard.setup_head_driver)
 except:
     print('Exception when trying to import required dependency scripts!')
@@ -116,6 +118,8 @@ class ComponentFunctionFactory:
             return scripts.setup_wizard.delete_empties.delete_empties
         elif component_name ==  'delete_specific_objects':
             return scripts.setup_wizard.delete_specific_objects.delete_specified_objects
+        elif component_name == 'make_character_upright':
+            return scripts.setup_wizard.make_character_upright.make_character_upright
         elif component_name == 'setup_head_driver':
             return scripts.setup_wizard.setup_head_driver.setup_head_driver
         else:
