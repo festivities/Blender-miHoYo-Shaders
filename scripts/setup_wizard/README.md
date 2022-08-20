@@ -13,10 +13,9 @@ The goal of this tool is to streamline the character setup process. Whether it's
 6. Select the option saying `file.genshin_setup_wizard > 0_Genshin: Setup Wizard - Select Festivity's Shader Folder`
 7. Select the root/base folder with Festivity's Shaders
     * Double click to navigate inside the folder to select it, no need to select a specific file inside!
-8. Select the root/base folder with Festivity's Shaders (yes, again!)
-9. Select the folder with the character model and textures (lightmaps, diffuses, etc.)
-10. Select the `miHoYo - Outlines.blend` located in the `experimental-blender-3.3` folder
-11. Select the material data JSON files for the outlines
+8. Select the folder with the character model and textures (lightmaps, diffuses, etc.)
+9. Select the `miHoYo - Outlines.blend` located in the `experimental-blender-3.3` folder
+10. Select the material data JSON files for the outlines
     * Shift+Click or Ctrl+Click the JSON files that you want to use (normally all of them)
 
 > **Do you use BetterFBX? Don't want to use FBX's standard import?** <br>
@@ -131,6 +130,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 - [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
 - [ ] BetterFBX Support/Fix UV map imports (only one UV map is imported)
+- [ ] Color Management Filmic -> Standard
 ### Refactoring
 - [ ] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
 - [ ] Refactor Import Outline Lightmaps component

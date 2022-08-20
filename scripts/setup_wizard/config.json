@@ -2,7 +2,7 @@
     "0": {
         "component_name": "import_python_dependencies/genshin_setup_wizard",
         "enabled": true,
-        "cache_key": "",
+        "cache_key": "festivity_root_folder_file_path",
         "metadata": {
             "note": "This is here for caching/documentation, but is not actually called by import_order",
             "description": "Need to set sys.path so that all components can access import_order",
