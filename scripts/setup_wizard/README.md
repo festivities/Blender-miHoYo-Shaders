@@ -12,9 +12,9 @@ The goal of this tool is to streamline the character setup process. Whether it's
 5. Hit F3 and type `Genshin`
 6. Select the option saying `file.genshin_setup_wizard > 0_Genshin: Setup Wizard - Select Festivity's Shader Folder`
 7. Select the root/base folder with Festivity's Shaders
-    * Double click to navigate inside the folder to select it, no need to select a specific file inside!
+    * Double click to navigate inside the folder to select it, do not select a specific file inside!
 8. Select the folder with the character model and textures (lightmaps, diffuses, etc.)
-9. Select the `miHoYo - Outlines.blend` located in the `experimental-blender-3.3` folder
+9. Select the `miHoYo - Outlines.blend` file located in the `experimental-blender-3.3` folder
 10. Select the material data JSON files for the outlines
     * Shift+Click or Ctrl+Click the JSON files that you want to use (normally all of them)
 
@@ -64,7 +64,8 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 9. Import Material Data
 10. Fix Mouth Outlines - **[Disabled by Default]**
 11. Delete Speciifc Objects
-12. Setup Head Driver
+12. Make Character Upright
+13. Setup Head Driver
 
 
 ## Steps (Detailed Guide)
@@ -118,14 +119,17 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 11. Delete Specific Objects
     * This step deletes specific object(s) which is only EffectMesh at this time.
     * No selection needed.
-12. Setup Head Driver
+12. Make Character Upright
+    * This step will set the character armature to 90 degrees on the x-axis (standing upright).
+    * No selection needed.
+13. Setup Head Driver
     * This step will setup the Head Driver constraint so that face shadows work
     * No selection needed.
 
 ## Development Roadmap / Future Features
 ### Features
 - [x] Head Driver Setup
-- [ ] Make model upright if not upright (?)
+- [X] Make model upright if not upright (?)
 - [ ] Scale up x100
 - [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
