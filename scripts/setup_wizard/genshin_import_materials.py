@@ -63,7 +63,7 @@ class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
             files=NAMES_OF_GENSHIN_MATERIALS
         )
 
-        self.report({'INFO'}, 'Imported materials...')
+        self.report({'INFO'}, 'Imported Shader/Genshin Materials...')
         invoke_next_step(self.next_step_idx, project_root_directory_file_path)
         return {'FINISHED'}
 
