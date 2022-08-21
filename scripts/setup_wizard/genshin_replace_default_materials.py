@@ -73,7 +73,7 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                 if genshin_material:            
                     material_slot.material = genshin_material
                 elif 'Dress' in mesh_body_part_name:
-                    print('Dress detected on character model!')
+                    self.report({'INFO'}, 'Dress detected on character model!')
                     material_mapping = self.material_assignment_mapping.get(character_name)
 
                     if material_mapping:
@@ -85,14 +85,14 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                     material_slot.material = bpy.data.materials.get(f'miHoYo - Genshin Body')
                     continue
                 else:
-                    print(f'Ignoring unknown mesh body part in character model: {mesh_body_part_name}')
+                    self.report({'WARNING'}, f'Ignoring unknown mesh body part in character model: {mesh_body_part_name}')
                     continue
 
                 # Don't need to duplicate multiple Face shader nodes
                 if genshin_material.name != f'miHoYo - Genshin Face':
                     genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
                     genshin_main_shader_node.node_tree = self.__clone_shader_node_and_rename(genshin_material, mesh_body_part_name)
-        print('Replaced default materials with Genshin shader materials...')
+        self.report({'INFO'}, 'Replaced default materials with Genshin shader materials...')
     
     def __clone_material_and_rename(self, material_slot, mesh_body_part_name_template, mesh_body_part_name):
         new_material = bpy.data.materials.get(mesh_body_part_name_template).copy()

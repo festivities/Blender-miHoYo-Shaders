@@ -127,7 +127,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                             material_node.default_value = material_json_value
             self.setup_outline_colors(json_material_data, body_part)
 
-        print('Imported materials...')
+        self.report({'INFO'}, 'Imported material data')
         invoke_next_step(self.next_step_idx)
         return {'FINISHED'}
 

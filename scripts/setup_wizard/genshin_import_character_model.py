@@ -68,7 +68,7 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
             force_connect_children=True,
             automatic_bone_orientation=True
         )
-        print('Imported character model...')
+        self.report({'INFO'}, 'Imported character model...')
     
     def reset_pose_location_and_rotation(self):
         armature = [object for object in bpy.data.objects if object.type == 'ARMATURE'][0]  # expecting 1 armature

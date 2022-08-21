@@ -122,7 +122,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     pass
             break  # IMPORTANT: We os.walk which also traverses through folders...we just want the files
 
-        print('\nImported textures...\n')
+        self.report({'INFO'}, 'Imported textures')
         invoke_next_step(self.next_step_idx, directory)
         return {'FINISHED'}
     
