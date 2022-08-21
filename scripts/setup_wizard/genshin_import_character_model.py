@@ -64,7 +64,6 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         character_model_file_path = self.__find_fbx_file(character_model_file_path_directory)
         bpy.ops.import_scene.fbx(
             filepath=character_model_file_path,
-            force_connect_children=True,
             automatic_bone_orientation=True
         )
         print('Imported character model...')
