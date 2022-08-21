@@ -2,6 +2,7 @@
 # Written by Mken from Discord
 
 import bpy
+import json
 
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
@@ -14,23 +15,6 @@ try:
     from scripts.setup_wizard.import_order import invoke_next_step
 except Exception:
     print('Error! Run the first step of setup_wizard! Need to set up python script paths')
-
-material_assignment_mapping = {
-    'Yelan': {
-        'miHoYo - Genshin Dress1': 'Body',
-        'miHoYo - Genshin Dress2': 'Hair'
-    },
-    'Collei': {
-        'miHoYo - Genshin Dress': 'Hair'
-    },
-    'Ganyu': {
-        'miHoYo - Genshin Dress': 'Body'
-    },
-    'Rosaria': {
-        'miHoYo - Genshin Dress1': 'Hair',
-        'miHoYo - Genshin Dress2': 'Body'
-    }
-}
 
 
 class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
@@ -57,13 +41,16 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
     next_step_idx: IntProperty()
     file_directory: StringProperty()
 
+    character_material_mapping_file = open('scripts/setup_wizard/character_material_mapping.json')
+    material_assignment_mapping = json.load(character_material_mapping_file)
+
     def execute(self, context):
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
 
         character_name = ''
         for name, folder, files in os.walk(character_model_folder_file_path):
             for file in files:
-                for tmp_character_name in material_assignment_mapping.keys():
+                for tmp_character_name in self.material_assignment_mapping.keys():
                     if tmp_character_name in file:
                         character_name = tmp_character_name
                         break
@@ -87,7 +74,7 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                     material_slot.material = genshin_material
                 elif 'Dress' in mesh_body_part_name:
                     print('Dress detected on character model!')
-                    material_mapping = material_assignment_mapping.get(character_name)
+                    material_mapping = self.material_assignment_mapping.get(character_name)
 
                     if material_mapping:
                         body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')

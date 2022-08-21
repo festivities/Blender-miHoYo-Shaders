@@ -2,7 +2,7 @@
 # Written by Mken from Discord
 
 import bpy
-import pathlib
+import json
 
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
@@ -41,23 +41,8 @@ class GI_OT_GenshinImportOutlineLightmaps(Operator, ImportHelper):
     next_step_idx: IntProperty()
     file_directory: StringProperty()
 
-    # TODO: Seriously need to centralize this into one file...
-    material_assignment_mapping = {
-        'Yelan': {
-            'miHoYo - Genshin Dress1': 'Body',
-            'miHoYo - Genshin Dress2': 'Hair'
-        },
-        'Collei': {
-            'miHoYo - Genshin Dress': 'Hair'
-        },
-        'Ganyu': {
-            'miHoYo - Genshin Dress': 'Body'
-        },
-        'Rosaria': {
-            'miHoYo - Genshin Dress1': 'Hair',
-            'miHoYo - Genshin Dress2': 'Body'
-        }
-    }
+    character_material_mapping_file = open('scripts/setup_wizard/character_material_mapping.json')
+    material_assignment_mapping = json.load(character_material_mapping_file)
 
     def execute(self, context):
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
