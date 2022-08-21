@@ -63,8 +63,8 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 8. Import Lightmaps for Outlines
 9. Import Material Data
 10. Fix Mouth Outlines - **[Disabled by Default]**
-11. Delete Speciifc Objects
-12. Make Character Upright
+11. Delete Specific Objects
+12. ~~Make Character Upright~~ - **[Disabled, WIP]**
 13. Setup Head Driver
 
 
@@ -122,7 +122,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 11. Delete Specific Objects
     * This step deletes specific object(s) which is only EffectMesh at this time.
     * No selection needed.
-12. Make Character Upright
+12. ~~Make Character Upright~~ - **[Disabled, WIP]**
     * This step will set the character armature to 90 degrees on the x-axis (standing upright).
     * No selection needed.
 13. Setup Head Driver
@@ -132,7 +132,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 ## Development Roadmap / Future Features
 ### Features
 - [x] Head Driver Setup
-- [X] Make model upright if not upright (?)
+- [ ] Make model upright if not upright (?)
 - [ ] Scale up x100
 - [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
