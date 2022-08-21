@@ -15,6 +15,16 @@ try:
 except Exception:
     print('Error! Run the first step of setup_wizard! Need to set up python script paths')
 
+BLEND_FILE_WITH_GENSHIN_MATERIALS = 'miHoYo - Genshin Impact.blend'
+MATERIAL_PATH_INSIDE_BLEND_FILE = 'Material'
+
+NAMES_OF_GENSHIN_MATERIALS = [
+    {'name': 'miHoYo - Genshin Body'},
+    {'name': 'miHoYo - Genshin Face'},
+    {'name': 'miHoYo - Genshin Hair'},
+    {'name': 'miHoYo - Genshin Outlines'}
+]
+
 
 class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
     """Select Festivity's Shaders folder to import materials"""
@@ -41,24 +51,15 @@ class GI_OT_GenshinImportMaterials(Operator, ImportHelper):
     file_directory: StringProperty()
 
     def execute(self, context):
-        BLEND_FILE_WITH_GENSHIN_MATERIALS = 'miHoYo - Genshin Impact.blend'
-        MATERIAL_PATH_INSIDE_BLEND_FILE = 'Material'
         project_root_directory_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
-
-        DIRECTORY_WITH_BLEND_FILE_PATH = os.path.join(
+        directory_with_blend_file_path = os.path.join(
             project_root_directory_file_path,
             BLEND_FILE_WITH_GENSHIN_MATERIALS,
             MATERIAL_PATH_INSIDE_BLEND_FILE
         )
-        NAMES_OF_GENSHIN_MATERIALS = [
-            {'name': 'miHoYo - Genshin Body'},
-            {'name': 'miHoYo - Genshin Face'},
-            {'name': 'miHoYo - Genshin Hair'},
-            {'name': 'miHoYo - Genshin Outlines'}
-        ]
 
         bpy.ops.wm.append(
-            directory=DIRECTORY_WITH_BLEND_FILE_PATH,
+            directory=directory_with_blend_file_path,
             files=NAMES_OF_GENSHIN_MATERIALS
         )
 
