@@ -13,6 +13,7 @@ import os
 
 try:
     from scripts.setup_wizard.import_order import invoke_next_step
+    from scripts.setup_wizard.import_order import get_path_to_character_material_mapping
 except Exception:
     print('Error! Run the first step of setup_wizard! Need to set up python script paths')
 
@@ -41,11 +42,10 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
     next_step_idx: IntProperty()
     file_directory: StringProperty()
 
-    character_material_mapping_file = open('scripts/setup_wizard/character_material_mapping.json')
-    material_assignment_mapping = json.load(character_material_mapping_file)
-
-
     def execute(self, context):
+        self.character_material_mapping_file = open(get_path_to_character_material_mapping())
+        self.material_assignment_mapping = json.load(self.character_material_mapping_file)
+
         directory = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
         
         for name, folder, files in os.walk(directory):

@@ -35,12 +35,15 @@ FESTIVITY_ROOT_FOLDER_FILE_PATH = 'festivity_root_folder_file_path'
 CHARACTER_MODEL_FOLDER_FILE_PATH = 'character_model_folder_file_path'
 
 path_to_setup_wizard_folder = ''
-
+path_to_character_material_mapping = ''
 
 def invoke_next_step(current_step_idx: int, file_path_to_cache=None, path_to_streamlined_setup=''):
     if path_to_streamlined_setup:
         global path_to_setup_wizard_folder
         path_to_setup_wizard_folder = path_to_streamlined_setup
+        
+        global path_to_character_material_mapping
+        path_to_character_material_mapping = f'{path_to_streamlined_setup}/character_material_mapping.json'
 
     # We use a config.json so that we can make changes without having to restart Blender
     # TODO: Make this a class that gets instantiated in each component? 
@@ -89,6 +92,10 @@ def cache_previous_step_file_path(cache, last_step, file_path_to_cache):
 
     print(f'Assigning `{step_cache_key}:{file_path_to_cache}` in cache')
     cache[step_cache_key] = file_path_to_cache
+
+
+def get_path_to_character_material_mapping():
+    return path_to_character_material_mapping
 
 
 class ComponentFunctionFactory:
