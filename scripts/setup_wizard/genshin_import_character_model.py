@@ -46,7 +46,8 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
     def execute(self, context):
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
 
-        self.__import_character_model(character_model_folder_file_path)
+        self.import_character_model(character_model_folder_file_path)
+        self.reset_pose_location_and_rotation()
 
         # Quick-fix, just want to shove this in here for now...
         # Hide EffectMesh (gets deleted later on) and EyeStar
@@ -60,13 +61,23 @@ class GI_OT_GenshinImportModel(Operator, ImportHelper):
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}
 
-    def __import_character_model(self, character_model_file_path_directory):
+    def import_character_model(self, character_model_file_path_directory):
         character_model_file_path = self.__find_fbx_file(character_model_file_path_directory)
         bpy.ops.import_scene.fbx(
             filepath=character_model_file_path,
+            force_connect_children=True,
             automatic_bone_orientation=True
         )
         print('Imported character model...')
+    
+    def reset_pose_location_and_rotation(self):
+        armature = [object for object in bpy.data.objects if object.type == 'ARMATURE'][0]  # expecting 1 armature
+        bpy.context.view_layer.objects.active = armature
+
+        bpy.ops.object.mode_set(mode='POSE')
+        bpy.ops.pose.loc_clear()
+        bpy.ops.pose.rot_clear()
+        bpy.ops.object.mode_set(mode='OBJECT')
 
     def __find_fbx_file(self, directory):
         for root, folder, files in os.walk(directory):
