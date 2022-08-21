@@ -110,7 +110,7 @@
     },
     "12": {
         "component_name": "make_character_upright",
-        "enabled": false,
+        "enabled": true,
         "cache_key": "",
         "metadata": {
             "note": "[WIP] Currently doesn't work correctly for all characters. Do this BEFORE setup_head_driver",
@@ -119,6 +119,15 @@
         }
     },
     "13": {
+        "component_name": "set_color_management_to_standard",
+        "enabled": true,
+        "cache_key": "",
+        "metadata": {
+            "description": "Set color management to Standard",
+            "requires": "None"
+        }
+    },
+    "14": {
         "component_name": "setup_head_driver",
         "enabled": true,
         "cache_key": "",

@@ -120,6 +120,8 @@ class ComponentFunctionFactory:
             return scripts.setup_wizard.delete_specific_objects.delete_specified_objects
         elif component_name == 'make_character_upright':
             return scripts.setup_wizard.make_character_upright.make_character_upright
+        elif component_name == 'set_color_management_to_standard':
+            return scripts.setup_wizard.make_character_upright.set_color_management_to_standard
         elif component_name == 'setup_head_driver':
             return scripts.setup_wizard.setup_head_driver.setup_head_driver
         else:
