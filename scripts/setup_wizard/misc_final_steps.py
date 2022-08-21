@@ -1,4 +1,4 @@
-# Written by Mken from Discord
+# Written by Mken from Discord with support from M4urlcl0!
 
 import bpy
 
@@ -15,7 +15,9 @@ def make_character_upright(next_step_index):
     bpy.ops.object.scale_clear()
     bpy.ops.object.rotation_clear()
     armature.rotation_euler[0] = 1.5708  # x-axis, 90 degrees
+    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)  # needed if you rotate using the above
 
+    # clean rotation
     # bpy.ops.transform.rotate(
     #     value=1.5708, 
     #     orient_axis='X', 
