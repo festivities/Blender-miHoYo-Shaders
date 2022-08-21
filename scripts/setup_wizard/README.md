@@ -83,6 +83,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
         * Import the character model which should be a .fbx file
         * Hide EffectMesh (gets deleted in a later step) and EyeStar
         * Add 'UV1' UV Map to ALL meshes (I think the important one is just Body though?)
+        * Resets the location and rotation bones in pose mode and sets the armature into an A-pose (this is is done because we import with `force_connect_children`)
     * Select the folder that contains the character model and textures. **It is assumed that the textures for the character are also in this folder.**
 2. Delete Empties
     * This step deletes Empty type objects in the scene
@@ -124,7 +125,7 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
     * This step deletes specific object(s) which is only EffectMesh at this time.
     * No selection needed.
 12. Make Character Upright
-    * This step will set the character armature to 90 degrees on the x-axis (standing upright).
+    * This step will reset the rotation and scale of the character armature and set the character armature to 90 degrees on the x-axis (standing upright).
     * No selection needed.
 13. Set Color Management to 'Standard'
     * This step will set the Color Management to Standard (normally Filmic)
@@ -135,12 +136,14 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 
 ## Development Roadmap / Future Features
 ### Features
-- [x] Head Driver Setup
+- [X] Head Driver Setup
 - [X] Make model upright if not upright (?)
-- [ ] Scale up x100
+- [X] ~~Scale up x100~~ Reset Scale (scaled to 1.0)
 - [ ] Character Ramp Type Mapping (automatically plug correct Body Ramp Type from Global Material Properties)
     - Requires knowing all characters who have a different the Body Ramp Type than the default
-- [ ] BetterFBX Support/Fix UV map imports (only one UV map is imported)
+- [X] BetterFBX Support/Fix UV map imports (only one UV map is imported)
+    - Created UV1 UV map which allows for underskirt textures (Zhongli, Lumine, etc.)
+    - No BetterFBX support still at this time though... 
 - [X] Color Management Filmic -> Standard
 ### Refactoring
 - [ ] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
@@ -148,6 +151,17 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
 - [ ] Refactor config.json from a dictionary to a List of dictionaries?
 ### Misc.
 - [ ] Design diagram depicting how this tool and the components interact and work
+
+## "Tested" Character Models
+The models below should not throw errors when running the Setup Wizard.
+- Amber
+- Collei
+- Hu Tao
+- Kamisato Ayato
+- Keqing
+- Lumine
+- Rosaria
+- Yelan
 
 #
 
