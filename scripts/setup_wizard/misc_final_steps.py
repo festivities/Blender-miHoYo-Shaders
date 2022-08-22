@@ -9,6 +9,7 @@ except:
 
 
 def make_character_upright(next_step_index):
+    bpy.ops.object.select_all(action='DESELECT')
     armature = [object for object in bpy.data.objects if object.type == 'ARMATURE'][0]  # expecting 1 armature
     armature.select_set(True)
 
