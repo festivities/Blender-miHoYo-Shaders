@@ -4,15 +4,25 @@
 
 The goal of this tool is to streamline the character setup process. Whether it's importing the materials, importing the character model, setting up the outlines (geometry nodes) or configuring the outline colors to be game accurate, this tool has got it all! Your one-stop-shop for setting up your characters in Blender!
 
+## Table of Contents
+1. [Quick Start Guide](#quick-start-guide)
+2. [How to Disable Components](#how-to-disable-components---important)
+3. [Features/Components](#featurescomponents)
+4. [Steps (Detailed Guide)](#steps-detailed-guide)
+5. [Development Roadmap/Future Features](#development-roadmap--future-features)
+6. ["Tested" Character Models](#tested-character-models)
+7. [Credits](#credits)
+
 ## Quick Start Guide
-1. Open Blender
+1. Open Blender (new file or one with no models)
 2. Switch to Scripting
 3. Open `genshin_setup_wizard.py`
 4. Run the script
 5. Hit F3 and type `Genshin`
-6. Select the option saying `file.genshin_setup_wizard > 0_Genshin: Setup Wizard - Select Festivity's Shader Folder`
+6. Select the option saying `file.genshin_setup_wizard > Genshin: Setup Wizard - Select Festivity's Shader Folder`
 7. Select the root/base folder with Festivity's Shaders
     * Double click to navigate inside the folder to select it, do not select a specific file inside!
+    * Ex. My shaders are in a folder called `Blender-miHoYo-Shaders`
 8. Select the folder with the character model and textures (lightmaps, diffuses, etc.)
 9. Select the `miHoYo - Outlines.blend` file located in the `experimental-blender-3.3` folder
 10. Select the material data JSON files for the outlines
@@ -146,24 +156,33 @@ You can disable the cache for any step by changing `"cache_key": "<whatever valu
     - No BetterFBX support still at this time though... 
 - [X] Color Management Filmic -> Standard
 ### Refactoring
-- [ ] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
+- [X] Refactor Material Assignment Mapping (externalize/centralize it to one locaiton)
 - [ ] Refactor Import Outline Lightmaps component
 - [ ] Refactor config.json from a dictionary to a List of dictionaries?
 ### Misc.
-- [ ] Design diagram depicting how this tool and the components interact and work
+- [X] Crude design diagram depicting how this tool and the components interact and work
+
+![alt text](https://user-images.githubusercontent.com/8632035/183316362-8a47f471-0fa4-4a3d-8e17-ea2c2a9a852e.png)
 
 ## "Tested" Character Models
 The models below should not throw errors when running the Setup Wizard.
 - Amber
+- Alhaitham
 - Collei
+- Dori
 - Hu Tao
 - Kamisato Ayato
 - Keqing
 - Lumine
+- Nahida
+- Nilou
 - Rosaria
+- Tighnari
 - Yelan
 
 #
+
+## Credits
 
 Thanks to all those who helped answer the questions I had while building out this tool and learning about Blender.
 <br>
