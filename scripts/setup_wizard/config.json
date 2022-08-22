@@ -95,6 +95,7 @@
         "enabled": false,
         "cache_key": "",
         "metadata": {
+            "note": "Disabled by default. Experimental. Use when your face/mouth has outlines sticking out of it.",
             "description": "Fixes mouth outlines -- assigns 'Camera' to Face outlines and applies a Depth Offset",
             "requires": "None"
         }
@@ -113,7 +114,7 @@
         "enabled": true,
         "cache_key": "",
         "metadata": {
-            "note": "[WIP] Currently doesn't work correctly for all characters. Do this BEFORE setup_head_driver",
+            "note": "Do this BEFORE setup_head_driver (otherwise some more logic needs to be written to Set Inverse)",
             "description": "Sets character armature to 90 degrees on x-axis (upright)",
             "requires": "None"
         }
