@@ -105,7 +105,7 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
                     self.setup_dress_textures(character_name, 'Body_Normalmap', img)
                 elif "Body_Shadow_Ramp" in file :
                     bpy.data.node_groups['Body Shadow Ramp'].nodes['Body_Shadow_Ramp'].image = img
-                elif "Body_Specular_Ramp" in file :
+                elif "Body_Specular_Ramp" or "Tex_Specular_Ramp" in file :
                     img.colorspace_settings.name='Non-Color'
                     bpy.data.node_groups['Body Specular Ramp'].nodes['Body_Specular_Ramp'].image = img
                 elif "Face_Diffuse" in file :
