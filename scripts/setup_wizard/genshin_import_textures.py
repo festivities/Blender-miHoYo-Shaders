@@ -125,8 +125,8 @@ class GI_OT_GenshinImportTextures(Operator, ImportHelper):
         for shader_dress_material in shader_dress_materials:
             original_dress_material = [material for material in bpy.data.materials if material.name.endswith(
                 shader_dress_material.name.split(' ')[-1]
-            )][0]
-            # for original_dress_material in original_dress_materials:
+            )][0]  # the material that ends with 'Dress', 'Dress1', 'Dress2'
+
             actual_material = get_actual_material_name_for_dress(original_dress_material.name)
             if actual_material in texture_name:
                 self.report({'INFO'}, f'Importing texture "{texture_name}" onto material "{shader_dress_material.name}"')
