@@ -1,4 +1,5 @@
 # Written by Mken from Discord
+# Kudos to Modder4869 for introducing another way to get the real material name for Dress materials
 
 import bpy
 import json
@@ -96,6 +97,17 @@ def cache_previous_step_file_path(cache, last_step, file_path_to_cache):
 
 def get_path_to_character_material_mapping():
     return path_to_character_material_mapping
+
+
+def get_actual_material_name_for_dress(material_name):
+    for material in bpy.data.materials:
+        if material_name in material.name:
+            # ex. 'Avatar_Lady_Pole_Rosaria_Tex_Body_Diffuse.png'
+            base_color_texture_image_name = material.node_tree.nodes['Principled BSDF'].inputs['Base Color'].links[0].from_node.image.name_full
+            actual_material_name = base_color_texture_image_name.split('_')[-2]
+            actual_material_name = actual_material_name if actual_material_name else 'Hair' \
+                if 'Hair' in base_color_texture_image_name else 'Body'  # fallback method to get mat name
+            return actual_material_name
 
 
 class ComponentFunctionFactory:

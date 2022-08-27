@@ -2,7 +2,6 @@
 # Written by Mken from Discord
 
 import bpy
-import json
 
 # ImportHelper is a helper class, defines filename and
 # invoke() function which calls the file selector.
@@ -13,7 +12,7 @@ import os
 
 try:
     from scripts.setup_wizard.import_order import invoke_next_step
-    from scripts.setup_wizard.import_order import get_path_to_character_material_mapping
+    from scripts.setup_wizard.import_order import get_actual_material_name_for_dress
 except Exception:
     print('Error! Run the first step of setup_wizard! Need to set up python script paths')
 
@@ -43,26 +42,13 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
     file_directory: StringProperty()
 
     def execute(self, context):
-        self.character_material_mapping_file = open(get_path_to_character_material_mapping())
-        self.material_assignment_mapping = json.load(self.character_material_mapping_file)
-
         character_model_folder_file_path = self.file_directory if self.file_directory else os.path.dirname(self.filepath)
-
-        character_name = ''
-        for name, folder, files in os.walk(character_model_folder_file_path):
-            for file in files:
-                for tmp_character_name in self.material_assignment_mapping.keys():
-                    if tmp_character_name in file:
-                        character_name = tmp_character_name
-                        break
-            break
-
-        self.replace_default_materials_with_genshin_materials(character_name)
+        self.replace_default_materials_with_genshin_materials()
 
         invoke_next_step(self.next_step_idx, character_model_folder_file_path)
         return {'FINISHED'}
     
-    def replace_default_materials_with_genshin_materials(self, character_name):
+    def replace_default_materials_with_genshin_materials(self):
         meshes = [mesh for mesh in bpy.context.scene.objects if mesh.type == 'MESH']
 
         for mesh in meshes:
@@ -75,13 +61,14 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                     material_slot.material = genshin_material
                 elif 'Dress' in mesh_body_part_name:
                     self.report({'INFO'}, 'Dress detected on character model!')
-                    material_mapping = self.material_assignment_mapping.get(character_name)
 
-                    if material_mapping:
-                        body_part = material_mapping.get(f'miHoYo - Genshin {mesh_body_part_name}')
-                        genshin_material = self.__clone_material_and_rename(material_slot, f'miHoYo - Genshin {body_part}', mesh_body_part_name)
-                    else:
-                        genshin_material = self.__clone_material_and_rename(material_slot, f'miHoYo - Genshin Body', mesh_body_part_name)
+                    actual_material_for_dress = get_actual_material_name_for_dress(material_name)
+                    genshin_material = self.__clone_material_and_rename(
+                        material_slot, 
+                        f'miHoYo - Genshin {actual_material_for_dress}', 
+                        mesh_body_part_name
+                    )
+                    self.report({'INFO'}, f'Replaced material: "{material_name}" with "{actual_material_for_dress}"')
                 elif material_name == 'miHoYoDiffuse':
                     material_slot.material = bpy.data.materials.get(f'miHoYo - Genshin Body')
                     continue
@@ -94,7 +81,7 @@ class GI_OT_GenshinReplaceDefaultMaterials(Operator, ImportHelper):
                     genshin_main_shader_node = genshin_material.node_tree.nodes.get('Group.001')
                     genshin_main_shader_node.node_tree = self.__clone_shader_node_and_rename(genshin_material, mesh_body_part_name)
         self.report({'INFO'}, 'Replaced default materials with Genshin shader materials...')
-    
+
     def __clone_material_and_rename(self, material_slot, mesh_body_part_name_template, mesh_body_part_name):
         new_material = bpy.data.materials.get(mesh_body_part_name_template).copy()
         new_material.name = f'miHoYo - Genshin {mesh_body_part_name}'
