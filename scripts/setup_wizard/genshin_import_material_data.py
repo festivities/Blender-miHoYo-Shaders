@@ -100,11 +100,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                         continue
 
                     if type(material_node) is bpy.types.NodeSocketColor:
-                        r = material_json_value['r']
-                        g = material_json_value['g']
-                        b = material_json_value['b']
-                        a = material_json_value['a']
-                        material_node.default_value = (r, g, b, a)
+                        material_node.default_value = self.__get_rgba_colors(material_json_value)
                     else:
                         material_node.default_value = material_json_value
                 
@@ -118,11 +114,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
                             continue
 
                         if type(material_node) is bpy.types.NodeSocketColor:
-                            r = material_json_value['r']
-                            g = material_json_value['g']
-                            b = material_json_value['b']
-                            a = material_json_value['a']
-                            material_node.default_value = (r, g, b, a)
+                            material_node.default_value = self.__get_rgba_colors(material_json_value)
                         else:
                             material_node.default_value = material_json_value
             self.setup_outline_colors(json_material_data, body_part)
@@ -141,16 +133,20 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
 
             if not material_json_value:
                 continue
-            
-            r = material_json_value['r']
-            g = material_json_value['g']
-            b = material_json_value['b']
-            a = material_json_value['a']
-            shader_node_input.default_value = (r, g, b, a)
+
+            shader_node_input.default_value = self.__get_rgba_colors(material_json_value)
     
     def __get_value_in_json(self, json_material_data, key):
         return json_material_data.get('m_SavedProperties').get('m_Floats').get(key) or \
             json_material_data.get('m_SavedProperties').get('m_Colors').get(key)
+
+    def __get_rgba_colors(self, material_json_value):
+        # check lowercase for backwards compatibility
+        r = material_json_value.get('R') if material_json_value.get('R') is not None else material_json_value.get('r')
+        g = material_json_value.get('G') if material_json_value.get('G') is not None else material_json_value.get('g')
+        b = material_json_value.get('B') if material_json_value.get('B') is not None else material_json_value.get('b')
+        a = material_json_value.get('A') if material_json_value.get('A') is not None else material_json_value.get('a')
+        return (r, g, b, a)
 
 
 def register():
