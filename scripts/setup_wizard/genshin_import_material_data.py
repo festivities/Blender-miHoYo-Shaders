@@ -142,6 +142,7 @@ class GI_OT_GenshinImportMaterialData(Operator, ImportHelper):
 
     def __get_rgba_colors(self, material_json_value):
         # check lowercase for backwards compatibility
+        # explicitly check 'is not None' because rgba values could be Falsy
         r = material_json_value.get('R') if material_json_value.get('R') is not None else material_json_value.get('r')
         g = material_json_value.get('G') if material_json_value.get('G') is not None else material_json_value.get('g')
         b = material_json_value.get('B') if material_json_value.get('B') is not None else material_json_value.get('b')
