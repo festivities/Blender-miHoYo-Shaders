@@ -1,4 +1,4 @@
-# miHoYo Shaders for Blender 3.2 and above
+# miHoYo Shaders for Blender 3.3 and above
 
 ## Preview *(heavily post-processed, will include raw previews soon)*
 ![Preview](https://pbs.twimg.com/media/FMHJjhOUYAAvPnR?format=jpg)
@@ -17,6 +17,7 @@
 5. Constrain the empty object named *Head Driver* to the head bone of your character with a **Child Of** constraint.
 6. In the *Global Material Properties* panel, you may wonder what the Body Y and Hair Y values are supposed to be - those correspond to the ramp textures. Refer to this little infographic I [made](https://i.imgur.com/r7BqTBV.png).
 7. A [tutorial](https://youtu.be/97G7LqFoTdY) made by [No_Tables](https://twitter.com/No_Tables) showcases the actual shader without any post-processing, and provides an overview as well.
+8. A [Blender add-on](https://github.com/michael-gh1/Addons-And-Tools-For-Blender-miHoYo-Shaders) has been made in an attempt to automate the set-up of the character shading. Feel free to check it out!
 
 ## Milestones
 These shaders aren't meant to be 100% accurate - in fact they will most likely never be until someone blesses us with the decompiled shader code. Until then, what I only aim for is to replicate the in-game looks to the best of my ability.
