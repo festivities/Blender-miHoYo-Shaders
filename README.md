@@ -1,5 +1,9 @@
 # miHoYo Shaders for Blender/Goo Engine 3.3 and above
 
+## Trailer
+
+[![Trailer](https://img.youtube.com/vi/sbmphjUkVsA/maxresdefault.jpg)](https://youtu.be/sbmphjUkVsA)
+
 ## Preview *(heavily post-processed)*
 ![Preview](https://pbs.twimg.com/media/FMHJjhOUYAAvPnR?format=jpg)
 
