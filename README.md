@@ -1,4 +1,4 @@
-# miHoYo Shaders for Blender/Goo Engine 3.3 and above
+# HoYoverse Shaders for Blender/Goo Engine 3.3 and above
 
 ## Trailer
 
@@ -9,18 +9,19 @@
 
 ![Preview](https://pbs.twimg.com/media/FgP2vD1akAAKNgs?format=jpg)
 
-## ~~Tutorial~~/Overview made by No_Tables *(thank you!)*
+## Overview made by No_Tables *(thank you!)*
 
-[![Tutorial by No_Tables](https://i.imgur.com/ktMusVY.jpg)](https://youtu.be/97G7LqFoTdY)
+![Overview by No_Tables](https://i.imgur.com/ktMusVY.jpg)](https://youtu.be/97G7LqFoTdY)
 
 ## Usage
 1. Either download a release [here](https://github.com/festivize/Blender-miHoYo-Shaders/releases), or download from the [source](https://github.com/festivize/Blender-miHoYo-Shaders/archive/refs/heads/main.zip) for the latest commit.
 2. In a new project with your desired character mesh, append whatever materials the .blend file you downloaded will contain.
 3. Replace the original materials of the mesh with the materials from the .blend file you just appended.
 4. Import the textures into their corresponding image nodes/texture slots.
-5. Constrain the empty object named *Head Driver* to the head bone of your character with a **Child Of** constraint.
-7. A [video](https://youtu.be/97G7LqFoTdY) made by [No_Tables](https://twitter.com/No_Tables) showcases the actual shader without any post-processing, and provides an overview as well.
-8. Check out this [Blender add-on](https://github.com/michael-gh1/Addons-And-Tools-For-Blender-miHoYo-Shaders) for automating the set-up of the character shading.
+5. Constrain the empty object named *Head Origin* to the head bone of your character with a **Child Of** constraint.
+7. This [video](https://youtu.be/97G7LqFoTdY) made by [No_Tables](https://twitter.com/No_Tables) showcases the actual shader without any post-processing, and provides an overview as well.
+8. This [video](https://youtu.be/vWfd3NIezpQ) made by [Bonny](https://twitter.com/BonnyTweetsOFF) is a (slightly outdated) tutorial on how to setup the shader 
+9. Check out this [Blender add-on](https://github.com/michael-gh1/Addons-And-Tools-For-Blender-miHoYo-Shaders) by Mken for automating the set-up for the shader.
 
 ## Contact
 - [Discord server](https://discord.gg/85rP9SpAkF)
@@ -35,12 +36,15 @@
 ## Special thanks
 All of this wouldn't be possible if it weren't for:
 - Arc System Works
-- miHoYo
+- HoYoverse
 - [Aerthas Veras](https://github.com/Aerthas/) 
 - [Manashiku](https://github.com/Manashiku/)
 - The folks over at [知乎专栏](https://zhuanlan.zhihu.com/)
 - JTAOO
-- Zekium and RumblingRose for the scripts
+- [BonnyAnimations](https://twitter.com/BonnyTweetsOFF)
+- [Mken](https://twitter.com/Mken_TechArt)
+- [Enthralpy](https://www.youtube.com/@Enthralpy)
+- [Llama](ttps://twitter.com/Llama3D)
 - [No_Tables](https://twitter.com/No_Tables)
 
 For that, I'd like to give back to the community with what I've learned. With that said, I hope you learn a thing or two. Enjoy!
