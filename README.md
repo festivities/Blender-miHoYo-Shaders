@@ -11,7 +11,7 @@
 
 ## Overview made by No_Tables *(thank you!)*
 
-![Overview by No_Tables](https://i.imgur.com/ktMusVY.jpg)](https://youtu.be/97G7LqFoTdY)
+[![Overview by No_Tables](https://i.imgur.com/ktMusVY.jpg)](https://youtu.be/97G7LqFoTdY)
 
 ## Usage
 1. Either download a release [here](https://github.com/festivize/Blender-miHoYo-Shaders/releases), or download from the [source](https://github.com/festivize/Blender-miHoYo-Shaders/archive/refs/heads/main.zip) for the latest commit.
@@ -44,7 +44,7 @@ All of this wouldn't be possible if it weren't for:
 - [BonnyAnimations](https://twitter.com/BonnyTweetsOFF)
 - [Mken](https://twitter.com/Mken_TechArt)
 - [Enthralpy](https://www.youtube.com/@Enthralpy)
-- [Llama](ttps://twitter.com/Llama3D)
+- [Llama](Https://twitter.com/Llama3D)
 - [No_Tables](https://twitter.com/No_Tables)
 
 For that, I'd like to give back to the community with what I've learned. With that said, I hope you learn a thing or two. Enjoy!
